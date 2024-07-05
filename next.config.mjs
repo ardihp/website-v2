@@ -8,11 +8,11 @@ const nextConfig = {
       },
       {
         source: "/v1",
-        destination: "http://localhost:3000/",
+        destination: "http://localhost:3000/v1",
       },
       {
         source: "/v1/:path*",
-        destination: "http://localhost:3000/:path*",
+        destination: "http://localhost:3000/v1/:path*",
       },
     ];
   },
