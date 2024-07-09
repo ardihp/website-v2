@@ -18,8 +18,8 @@ export default function HeaderItem({ href, text, ...rest }: HeaderItemProps) {
       {...rest}
       className={`${
         pathname.match(href)
-          ? "dark:text-sky-400 dark:bg-sky-500/20 bg-sky-400/20 text-sky-500"
-          : ""
+          ? "dark:text-sky-400 dark:bg-sky-500/20 bg-sky-400/20 text-sky-500 opacity-100"
+          : "opacity-50 hover:opacity-100"
       } duration-300 py-2 px-3 rounded-lg w-full text-center text-sm font-medium cursor-none`}
     >
       {text}

@@ -64,16 +64,17 @@ body {
     @apply hidden sm:flex fixed pointer-events-none z-[2];
   }
 
+  .cursor.overlay-blur,
   .cursor.hover-cursor {
     @apply [&_.icon-dot]:hidden [&_.icon-eye]:block;
   }
 
   .cursor-overlay {
-    @apply hidden sm:flex fixed bg-zinc-300/10 w-[50px] h-[50px] rounded-full transition-all ease-linear pointer-events-none z-[1];
+    @apply hidden sm:flex fixed dark:bg-zinc-700/25 bg-zinc-300/25 w-[50px] h-[50px] rounded-full transition-all ease-linear pointer-events-none z-[1];
     transition-duration: 100ms;
   }
 
-  .cursor-overlay.hover-cursor {
-    @apply bg-zinc-50 w-[35px] h-[35px] shadow-lg;
+  .cursor-overlay.overlay-blur {
+    @apply dark:bg-zinc-700/10 bg-zinc-50 w-[35px] h-[35px] shadow-lg backdrop-blur-sm;
   }
 }

@@ -9,7 +9,7 @@ export default function HeaderSection() {
       <div className="flex justify-between w-full max-w-screen-lg rounded-full">
         <Link
           href="/"
-          className="relative w-[50px] h-[50px] rounded-full overflow-hidden bg-white"
+          className="relative w-[50px] h-[50px] rounded-full overflow-hidden bg-white cursor-none"
         >
           <Image
             src="/logo.png"
@@ -20,7 +20,7 @@ export default function HeaderSection() {
         </Link>
 
         <div className="flex items-center gap-4">
-          <HeaderItem href="/blog" text="Blog" />
+          <HeaderItem href="/posts" text="Posts" />
           <HeaderItem href="/works" text="Works" />
           <HeaderItem href="/about" text="About" />
         </div>

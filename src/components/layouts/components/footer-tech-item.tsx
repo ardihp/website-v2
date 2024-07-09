@@ -22,8 +22,8 @@ export default function FooterTechItem({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
-          <Link href={href} target="_blank" passHref>
+        <TooltipTrigger role="contentinfo">
+          <Link href={href} target="_blank" passHref className="cursor-none">
             <div className="flex rounded-full relative opacity-50 hover:opacity-100">
               {icon}
             </div>

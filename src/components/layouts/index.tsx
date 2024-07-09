@@ -17,12 +17,12 @@ export default function LayoutSection({ children }: { children: ReactNode }) {
 
       button.forEach((btn) => {
         btn.addEventListener("mousemove", function () {
-          cursor.classList.add("hover-cursor");
-          cursorOverlay.classList.add("hover-cursor");
+          cursor.classList.add("overlay-blur");
+          cursorOverlay.classList.add("overlay-blur");
         });
         btn.addEventListener("mouseleave", function () {
-          cursor.classList.remove("hover-cursor");
-          cursorOverlay.classList.remove("hover-cursor");
+          cursor.classList.remove("overlay-blur");
+          cursorOverlay.classList.remove("overlay-blur");
         });
       });
 

@@ -21,7 +21,7 @@ export default function FooterSection() {
 
   return (
     <div className="w-full max-w-screen-lg mx-auto">
-      <div className="flex items-center justify-between p-6">
+      <div className="flex items-center justify-between py-6">
         <div className="flex items-center gap-3">
           <p className="text-xs font-medium">Made by</p>
           <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full dark:bg-zinc-800 bg-zinc-50 border dark:border-zinc-800 border-zinc-200">
