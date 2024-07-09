@@ -24,7 +24,7 @@ export default function FooterSection() {
       <div className="flex items-center justify-between p-6">
         <div className="flex items-center gap-3">
           <p className="text-xs font-medium">Made by</p>
-          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full dark:bg-zinc-800 bg-zinc-100 border dark:border-zinc-800 border-zinc-200">
+          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full dark:bg-zinc-800 bg-zinc-50 border dark:border-zinc-800 border-zinc-200">
             <FooterTechItem
               href="https://nextjs.org/"
               title="Next.js"
@@ -53,11 +53,11 @@ export default function FooterSection() {
           </div>
         </div>
 
-        <div className="flex items-center dark:bg-zinc-800 bg-zinc-100 border dark:border-zinc-800 border-zinc-200 rounded-full">
+        <div className="flex items-center dark:bg-zinc-800 bg-zinc-50 border dark:border-zinc-800 border-zinc-200 rounded-full">
           {["Dark", "Light", "System"].map((item, key) => (
             <p
               key={key}
-              className={`text-[12px] cursor-pointer rounded-full py-[5px] px-[10px] font-medium ${
+              className={`text-[12px] rounded-full py-[5px] px-[10px] font-medium ${
                 currentTheme === item?.toLocaleLowerCase()
                   ? "opacity-100 dark:text-sky-400 dark:bg-sky-500/20 bg-sky-400/20 text-sky-500"
                   : "opacity-50"

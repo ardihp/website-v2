@@ -21,7 +21,7 @@ export default function HeaderSection() {
 
         <div className="flex items-center gap-4">
           <HeaderItem href="/blog" text="Blog" />
-          <HeaderItem href="/project" text="Project" />
+          <HeaderItem href="/works" text="Works" />
           <HeaderItem href="/about" text="About" />
         </div>
       </div>
