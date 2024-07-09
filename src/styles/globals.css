@@ -5,6 +5,7 @@
 body {
   background-color: var(--background);
   font-family: var(--font-fredoka);
+  cursor: none;
 }
 
 :root {
@@ -55,5 +56,24 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .cursor {
+    @apply hidden sm:flex fixed pointer-events-none z-[2];
+  }
+
+  .cursor.hover-cursor {
+    @apply [&_.icon-dot]:hidden [&_.icon-eye]:block;
+  }
+
+  .cursor-overlay {
+    @apply hidden sm:flex fixed bg-zinc-300/10 w-[50px] h-[50px] rounded-full transition-all ease-linear pointer-events-none z-[1];
+    transition-duration: 100ms;
+  }
+
+  .cursor-overlay.hover-cursor {
+    @apply bg-zinc-50 w-[35px] h-[35px] shadow-lg;
   }
 }
