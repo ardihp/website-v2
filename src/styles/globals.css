@@ -77,4 +77,8 @@ body {
   .cursor-overlay.overlay-blur {
     @apply dark:bg-zinc-700/10 bg-zinc-50 w-[35px] h-[35px] shadow-lg backdrop-blur-sm;
   }
+
+  .border-style {
+    @apply border-dashed dark:border-zinc-700 border-zinc-300;
+  }
 }

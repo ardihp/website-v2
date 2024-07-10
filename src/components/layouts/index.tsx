@@ -51,7 +51,9 @@ export default function LayoutSection({ children }: { children: ReactNode }) {
       </div>
       <div className="flex flex-col min-h-screen">
         <HeaderSection />
-        <div className="w-full h-full flex flex-col flex-grow">{children}</div>
+        <div className="w-full h-full flex flex-col flex-grow max-w-screen-lg mx-auto">
+          {children}
+        </div>
         <FooterSection />
       </div>
     </>
