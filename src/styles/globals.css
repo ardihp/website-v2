@@ -70,8 +70,7 @@ body {
   }
 
   .cursor-overlay {
-    @apply hidden sm:flex fixed dark:bg-zinc-700/25 bg-zinc-300/25 w-[50px] h-[50px] rounded-full transition-all ease-linear pointer-events-none z-[1];
-    transition-duration: 100ms;
+    @apply hidden sm:flex fixed dark:bg-zinc-700/25 bg-zinc-300/25 w-[50px] h-[50px] rounded-full pointer-events-none z-[1];
   }
 
   .cursor-overlay.overlay-blur {

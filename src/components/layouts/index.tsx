@@ -1,11 +1,16 @@
 "use client";
 
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 import HeaderSection from "./header";
 import FooterSection from "./footer";
 import { IconCircleFilled, IconEye, IconEyeFilled } from "@tabler/icons-react";
+import { useFollowPointer } from "@/lib/use-follow-cursor";
+import { motion } from "framer-motion";
 
 export default function LayoutSection({ children }: { children: ReactNode }) {
+  const ref = useRef(null);
+  const { x, y } = useFollowPointer(ref);
+
   useEffect(() => {
     const moveCursor = (e: any) => {
       const cursor: any =
@@ -47,7 +52,8 @@ export default function LayoutSection({ children }: { children: ReactNode }) {
           <IconCircleFilled className="dark:text-white text-black w-[8px] h-[8px] icon-dot" />
           <IconEyeFilled className="hidden dark:text-white text-black w-[14px] h-[14px] icon-eye" />
         </div>
-        <div className="cursor-overlay" />
+        <motion.div ref={ref} className="cursor-overlay" style={{ x, y }} />
+        {/* <div className="cursor-overlay" /> */}
       </div>
       <div className="flex flex-col min-h-screen">
         <HeaderSection />
