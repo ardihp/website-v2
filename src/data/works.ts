@@ -1,4 +1,4 @@
-interface Work {
+export interface Work {
   company: string;
   desc: string;
   image: string;
@@ -22,18 +22,18 @@ export const listWorks: Work[] = [
     live: "",
   },
   {
-    company: "Otego Media",
-    desc: "Internal ERP Dashboard",
-    image: "/works/otego.jpg",
-    tech: ["Next.js", "MUI Material"],
-    live: "",
-  },
-  {
     company: "Rakata ID",
     desc: "One stop literary corner for book lovers. Read, write, connect 📖",
     image: "/works/rakata.jpg",
     tech: ["React.js", "TypeScript", "Firebase", "Styled Components"],
     live: "https://rakata.id",
+  },
+  {
+    company: "Otego Media",
+    desc: "Internal ERP Dashboard",
+    image: "/works/otego.jpg",
+    tech: ["Next.js", "MUI Material"],
+    live: "",
   },
   {
     company: "Blue Karma Secrets",
