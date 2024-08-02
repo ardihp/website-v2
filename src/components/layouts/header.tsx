@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function HeaderSection() {
   return (
-    <div className="flex flex-col py-3 items-center sticky top-0 border-b border-style border-solid">
+    <div className="flex flex-col py-3 items-center sticky top-0 border-b border-style border-solid backdrop-blur-sm z-[10]">
       <div className="flex justify-between w-full max-w-screen-lg rounded-full px-12">
         <Link
           href="/"
