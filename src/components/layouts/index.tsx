@@ -13,7 +13,7 @@ export default function LayoutSection({ children }: { children: ReactNode }) {
       const cursorOverlay: any =
         document.getElementsByClassName("cursor-overlay")?.item(0) || "";
 
-      const button = Array.from(document.querySelectorAll("button"));
+      const button = Array.from(document.querySelectorAll(".footer-tech-item"));
 
       button.forEach((btn) => {
         btn.addEventListener("mousemove", function () {

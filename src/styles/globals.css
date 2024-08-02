@@ -61,7 +61,7 @@ body {
 
 @layer components {
   .cursor {
-    @apply hidden sm:flex fixed pointer-events-none z-[2];
+    @apply hidden sm:flex fixed pointer-events-none z-[1000];
   }
 
   .cursor.overlay-blur,
