@@ -6,10 +6,17 @@ body {
   background-color: var(--background);
   font-family: var(--font-fredoka);
   cursor: none;
+
+  background-image: radial-gradient(var(--polkadot) 4%, transparent 4%),
+    radial-gradient(var(--polkadot) 4%, transparent 4%);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+  background-repeat: repeat;
 }
 
 :root {
-  --background: 0 0% 100%;
+  --background: #fff9e3;
+  --polkadot: #ffe8cb;
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
   --card-foreground: 240 10% 3.9%;
@@ -33,6 +40,7 @@ body {
 
 .dark {
   --background: 240 10% 3.9%;
+  --polkadot: rgb(24 24 27);
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;
   --card-foreground: 0 0% 98%;
@@ -59,6 +67,12 @@ body {
   }
 }
 
+@layer base {
+  p {
+    @apply text-secondary dark:text-white;
+  }
+}
+
 @layer components {
   .cursor {
     @apply hidden sm:flex fixed pointer-events-none z-[1000];
@@ -78,6 +92,6 @@ body {
   }
 
   .border-style {
-    @apply border-dashed dark:border-zinc-700 border-zinc-300;
+    @apply border-dashed dark:border-zinc-700 border-secondary/10;
   }
 }

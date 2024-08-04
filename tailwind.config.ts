@@ -22,6 +22,11 @@ const config = {
       manrope: ["var(--font-manrope)"],
     },
     extend: {
+      colors: {
+        primary: "#FFF9E3",
+        secondary: "#470A00",
+        tertiary: "#694500",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
