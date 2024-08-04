@@ -21,10 +21,10 @@ export default function FooterSection() {
 
   return (
     <div className="w-full max-w-screen-lg mx-auto">
-      <div className="flex items-center justify-between px-4 lg:px-12 py-6">
+      <div className="flex items-center justify-between px-4 lg:px-12 py-10">
         <div className="flex items-center gap-3">
           <p className="text-xs font-medium">Made by</p>
-          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full dark:bg-zinc-800 bg-zinc-50 border dark:border-zinc-800 border-zinc-200">
+          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full dark:bg-zinc-800 border dark:border-zinc-800 border-secondary/20">
             <FooterTechItem
               href="https://nextjs.org/"
               title="Next.js"
@@ -53,13 +53,13 @@ export default function FooterSection() {
           </div>
         </div>
 
-        <div className="flex items-center dark:bg-zinc-800 bg-zinc-50 border dark:border-zinc-800 border-zinc-200 rounded-full">
+        <div className="flex items-center dark:bg-zinc-800 border dark:border-zinc-800 border-secondary/20 rounded-full">
           {["Dark", "Light", "System"].map((item, key) => (
             <p
               key={key}
               className={`text-[12px] rounded-full py-[5px] px-[10px] font-medium ${
                 currentTheme === item?.toLocaleLowerCase()
-                  ? "opacity-100 dark:text-sky-400 dark:bg-sky-500/20 bg-sky-400/20 text-sky-500"
+                  ? "opacity-100 dark:bg-zinc-900 bg-secondary/10"
                   : "opacity-50"
               }`}
               onClick={() => setTheme(item?.toLocaleLowerCase())}

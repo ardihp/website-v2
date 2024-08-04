@@ -5,11 +5,13 @@ import HeaderSection from "./header";
 import FooterSection from "./footer";
 import { IconCircleFilled, IconEye, IconEyeFilled } from "@tabler/icons-react";
 import { useFollowPointer } from "@/lib/use-follow-cursor";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function LayoutSection({ children }: { children: ReactNode }) {
   const ref = useRef(null);
   const { x, y } = useFollowPointer(ref);
+  const pathname = usePathname();
 
   useEffect(() => {
     const moveCursor = (e: any) => {
@@ -46,22 +48,24 @@ export default function LayoutSection({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <>
-      <div className="absolute flex items-center justify-center">
-        <div className="cursor">
-          <IconCircleFilled className="dark:text-white text-black w-[8px] h-[8px] icon-dot" />
-          <IconEyeFilled className="hidden dark:text-white text-black w-[14px] h-[14px] icon-eye" />
+    <AnimatePresence mode="wait">
+      <React.Fragment key={pathname}>
+        <div className="absolute flex items-center justify-center">
+          <div className="cursor">
+            <IconCircleFilled className="dark:text-white text-black w-[8px] h-[8px] icon-dot" />
+            <IconEyeFilled className="hidden dark:text-white text-black w-[14px] h-[14px] icon-eye" />
+          </div>
+          <motion.div ref={ref} className="cursor-overlay" style={{ x, y }} />
+          {/* <div className="cursor-overlay" /> */}
         </div>
-        <motion.div ref={ref} className="cursor-overlay" style={{ x, y }} />
-        {/* <div className="cursor-overlay" /> */}
-      </div>
-      <div className="flex flex-col min-h-screen">
-        <HeaderSection />
-        <div className="w-full h-full flex flex-col flex-grow max-w-screen-lg mx-auto">
-          {children}
+        <div className="flex flex-col min-h-screen">
+          <HeaderSection />
+          <div className="w-full h-full flex flex-col flex-grow max-w-screen-lg mx-auto backdrop-blur-sm">
+            {children}
+          </div>
+          <FooterSection />
         </div>
-        <FooterSection />
-      </div>
-    </>
+      </React.Fragment>
+    </AnimatePresence>
   );
 }
