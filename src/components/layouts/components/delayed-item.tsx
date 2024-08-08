@@ -6,36 +6,41 @@ import { useInView, motion } from "framer-motion";
 interface DelayedItemProps {
   children: ReactNode;
   delay?: number;
-  start?: string;
-  end?: string;
+  start: string;
+  end: string;
 }
 
 export default function DelayedItem({
   children,
   delay,
-  start = "bottom",
-  end = "bottom",
+  start,
+  end,
 }: DelayedItemProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   const coordinatePosition = (value: string) => {
     let x = 0;
-    let y = 30;
+    let y = 0;
 
     switch (value) {
       case "top":
         y = -30;
+        break;
       case "left":
         x = -30;
+        break;
       case "right":
         x = 30;
+        break;
       case "bottom":
         y = 30;
+        break;
 
       default:
         x = 0;
-        y = 30;
+        y = 0;
+        break;
     }
 
     return { x, y };

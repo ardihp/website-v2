@@ -4,12 +4,12 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-interface HeaderItemProps {
+interface NavbarItemProps {
   href: string;
   text: string;
 }
 
-export default function HeaderItem({ href, text, ...rest }: HeaderItemProps) {
+export default function NavbarItem({ href, text, ...rest }: NavbarItemProps) {
   const pathname = usePathname();
 
   return (
@@ -18,9 +18,9 @@ export default function HeaderItem({ href, text, ...rest }: HeaderItemProps) {
       {...rest}
       className={`${
         pathname.match(href)
-          ? "opacity-100 border-b-2"
+          ? "opacity-100 shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80"
           : "opacity-50 hover:opacity-100"
-      } duration-100 py-2 px-3 dark:border-zinc-800 border-secondary/20 rounded-lg w-full text-center dark:text-white text-secondary text-sm font-medium cursor-none`}
+      } duration-300 py-2 px-3 dark:border-zinc-800 border-secondary/20 rounded-lg w-full text-center dark:text-white text-secondary text-sm font-medium`}
     >
       {text}
     </Link>
