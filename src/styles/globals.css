@@ -5,17 +5,10 @@
 body {
   background-color: var(--background);
   font-family: var(--font-fredoka);
-  cursor: none;
-
-  background-image: radial-gradient(var(--polkadot) 4%, transparent 4%),
-    radial-gradient(var(--polkadot) 4%, transparent 4%);
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px;
-  background-repeat: repeat;
 }
 
 :root {
-  --background: #fff9e3;
+  --background: #fdf9eb;
   --polkadot: #ffe8cb;
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -74,24 +67,7 @@ body {
 }
 
 @layer components {
-  .cursor {
-    @apply hidden sm:flex fixed pointer-events-none z-[1000];
-  }
-
-  .cursor.overlay-blur,
-  .cursor.hover-cursor {
-    @apply [&_.icon-dot]:hidden [&_.icon-eye]:block;
-  }
-
-  .cursor-overlay {
-    @apply hidden sm:flex fixed dark:bg-zinc-700/25 bg-zinc-300/25 w-[50px] h-[50px] rounded-full pointer-events-none z-[1];
-  }
-
-  .cursor-overlay.overlay-blur {
-    @apply dark:bg-zinc-700/10 bg-zinc-50 w-[35px] h-[35px] shadow-lg backdrop-blur-sm;
-  }
-
   .border-style {
-    @apply border-dashed dark:border-zinc-700 border-secondary/10;
+    @apply border-dashed dark:border-solid dark:border-transparent border-secondary/10;
   }
 }
