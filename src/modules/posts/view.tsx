@@ -34,13 +34,29 @@ export default function PostsView({ posts }: PostsViewProps) {
         <div className="flex flex-col gap-9">
           {posts.map(
             (post: any, index: number) =>
-              index % 2 === 0 && <PostItem key={index} post={post} />
+              index % 2 === 0 && (
+                <PostItem
+                  key={index}
+                  post={post}
+                  delay={index < 6 ? 0.2 * index + 0.25 : 0.25}
+                  start="bottom"
+                  end="bottom"
+                />
+              )
           )}
         </div>
         <div className="flex flex-col gap-9">
           {posts.map(
             (post: any, index: number) =>
-              index % 2 !== 0 && <PostItem key={index} post={post} />
+              index % 2 !== 0 && (
+                <PostItem
+                  key={index}
+                  post={post}
+                  delay={index < 6 ? 0.2 * index + 0.25 : 0.25}
+                  start="bottom"
+                  end="bottom"
+                />
+              )
           )}
         </div>
       </div>
