@@ -22,7 +22,7 @@ export default function WorkItem({ work, delay, start, end }: WorkItemProps) {
         target={work.live ? "_blank" : "_self"}
         passHref
       >
-        <div className="flex flex-col shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80 border-style group border-solid dark:border-opacity-50 hover:dark:border-opacity-100 p-4 rounded-[16px] h-fit dark:bg-zinc-900/40 bg-secondary/[0.01]">
+        <div className={`flex flex-col shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80 border-style group border-solid dark:border-opacity-50 hover:dark:border-opacity-100 p-4 rounded-[16px] h-fit dark:bg-zinc-900/40 bg-secondary/[0.01] relative top-0 scale-100 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99] ${work.live ? 'cursor-pointer' : 'cursor-default'}`}>
           <div className="p-[6px] rounded-full w-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700">
             <div className="relative z-[2] h-[35px] w-[35px] rounded-full overflow-hidden">
               <Image
