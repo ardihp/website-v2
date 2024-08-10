@@ -1,5 +1,5 @@
 import DelayedItem from "@/components/layouts/components/delayed-item";
-import { formatDate } from "@/lib/utils";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
