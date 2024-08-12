@@ -38,7 +38,7 @@ export default function PostsView({ posts }: PostsViewProps) {
                 <PostItem
                   key={index}
                   post={post}
-                  delay={index < 6 ? 0.1 * index + 0.15 : 0.15}
+                  delay={index < 4 ? 0.1 * index + 0.15 : 0.05 * index}
                   start="bottom"
                   end="bottom"
                 />
@@ -52,7 +52,7 @@ export default function PostsView({ posts }: PostsViewProps) {
                 <PostItem
                   key={index}
                   post={post}
-                  delay={index < 6 ? 0.1 * index + 0.15 : 0.15}
+                  delay={index < 4 ? 0.1 * index + 0.15 : 0.05 * index}
                   start="bottom"
                   end="bottom"
                 />

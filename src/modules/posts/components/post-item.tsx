@@ -31,8 +31,8 @@ export default function PostItem({ post, delay, start, end }: PostItemsProps) {
             />
             <div className="bg-black/30 w-full h-full absolute top-0" />
           </div>
-          <div className="flex flex-col gap-2 p-3 mx-6 absolute bg-primary/5 bottom-6 backdrop-blur-sm border border-primary/10 rounded-[16px]">
-            <p className="font-fredoka text-lg font-medium leading-6 text-pretty line-clamp-2 text-primary">
+          <div className="flex flex-col gap-2 p-3 w-[calc(100%_-_48px)] absolute bg-primary/5 bottom-6 backdrop-blur-sm border border-primary/10 rounded-[16px]">
+            <p className="font-fredoka text-lg font-medium leading-5 text-pretty line-clamp-2 text-primary">
               {post?.properties?.title?.title?.[0]?.plain_text}
             </p>
             <p className="font-manrope text-xs font-medium text-pretty line-clamp-2 text-primary/90">
