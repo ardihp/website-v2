@@ -65,10 +65,7 @@ export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
         </BreadcrumbList>
       </Breadcrumb>
       <div className="flex">
-        <div
-          className="prose prose-p:font-normal prose-p:font-manrope prose-p:text-secondary/60 prose-p:text-base prose-p:my-5 prose-p:text-pretty prose-hr:my-4 prose-h3:leading-8 prose-h3:mt-5 prose-h3:text-secondary/70 prose-figure:my-5 prose-img:rounded-[20px] prose-img:overflow-hidden prose-figure:rounded-[32px] prose-figure:p-4 prose-figure:shadow-inner prose-figure:shadow-secondary/15 prose-figure:min-h-[180px] prose-lg"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className="post-page" dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </div>
   );

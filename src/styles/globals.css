@@ -74,4 +74,8 @@ body {
   .border-style {
     @apply border-dashed dark:border-solid dark:border-transparent border-secondary/10;
   }
+
+  .post-page {
+    @apply prose prose-p:font-normal prose-p:font-manrope prose-p:text-secondary/60 prose-p:text-base prose-p:mt-3 prose-p:mb-4 prose-p:text-pretty prose-hr:my-4 prose-h3:leading-8 prose-h3:mt-3 prose-h3:mb-2 prose-h3:text-secondary/60 prose-figure:mt-5 prose-figure:mb-4 prose-img:rounded-[20px] prose-img:overflow-hidden prose-figure:rounded-[32px] prose-figure:p-4 prose-figure:shadow-inner prose-figure:shadow-secondary/15 prose-figure:min-h-[180px] prose-lg prose-blockquote:text-secondary prose-blockquote:border-secondary/50;
+  }
 }
