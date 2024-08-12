@@ -3,6 +3,7 @@ import { Fredoka, Manrope } from "next/font/google";
 import LayoutSection from "@/components/layouts";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -59,6 +60,12 @@ export default function RootLayout({
         >
           <LayoutSection>{children}</LayoutSection>
         </ThemeProvider>
+
+        <Script
+          async
+          src="https://cloud.umami.is/script.js"
+          data-website-id="a0b93b20-e464-4845-b021-1d0c1e59459e"
+        />
       </body>
     </html>
   );
