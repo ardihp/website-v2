@@ -25,16 +25,16 @@ export default function DelayedItem({
 
     switch (value) {
       case "top":
-        y = -30;
+        y = -15;
         break;
       case "left":
-        x = -30;
+        x = -15;
         break;
       case "right":
-        x = 30;
+        x = 15;
         break;
       case "bottom":
-        y = 30;
+        y = 15;
         break;
 
       default:
