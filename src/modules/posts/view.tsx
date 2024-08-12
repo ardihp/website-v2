@@ -21,8 +21,6 @@ interface PostsViewProps {
 }
 
 export default function PostsView({ posts }: PostsViewProps) {
-  console.log(posts);
-
   return (
     <div className="flex flex-col max-w-screen-lg mx-auto w-full pt-[12px]">
       <HeaderPage

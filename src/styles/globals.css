@@ -76,6 +76,6 @@ body {
   }
 
   .post-page {
-    @apply prose prose-p:font-bold prose-p:font-manrope prose-p:text-secondary/50 prose-p:text-base prose-p:mt-3 prose-p:mb-4 prose-p:text-pretty prose-hr:my-4 prose-h3:leading-8 prose-h3:mt-3 prose-h3:mb-2 prose-h3:text-secondary/60 prose-figure:mt-5 prose-figure:mb-4 prose-img:rounded-[20px] prose-img:overflow-hidden prose-figure:rounded-[32px] prose-figure:p-4 prose-figure:shadow-inner prose-figure:shadow-secondary/15 prose-figure:min-h-[180px] prose-lg prose-blockquote:text-secondary prose-blockquote:border-secondary/50;
+    @apply prose prose-p:font-bold prose-p:font-manrope dark:prose-p:text-white/60 prose-p:text-secondary/50 prose-p:text-base prose-p:mt-3 prose-p:mb-4 prose-p:text-pretty prose-hr:my-4 dark:prose-hr:border-white prose-hr:border-secondary prose-h3:leading-8 prose-h3:mt-3 prose-h3:mb-2 dark:prose-h3:text-white prose-h3:text-secondary/70 prose-figure:mt-5 prose-figure:mb-4 prose-img:rounded-[20px] prose-img:overflow-hidden prose-figure:rounded-[32px] prose-figure:p-4 prose-figure:shadow-inner dark:prose-figure:shadow-zinc-700/80 prose-figure:shadow-secondary/15 prose-figure:min-h-[180px] prose-lg prose-blockquote:text-secondary/60 prose-blockquote:border-secondary/50 prose-blockquote:py-3 prose-figure:flex prose-figure:flex-col prose-figure:items-center prose-figure:gap-1 prose-a:text-secondary prose-a:text-sm;
   }
 }

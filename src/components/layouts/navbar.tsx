@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function NavbarSection() {
   return (
-    <div className="flex flex-col py-8 items-center sticky top-0 bg-primary/20 backdrop-blur-sm z-[10]">
+    <div className="flex flex-col py-8 items-center sticky top-0 dark:bg-transparent bg-primary/20 backdrop-blur-sm z-[10]">
       <div className="flex justify-between w-full max-w-screen-lg rounded-full px-12">
         <Link
           href="/"
