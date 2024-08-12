@@ -5,6 +5,10 @@
 body {
   background-color: var(--background);
   font-family: var(--font-fredoka);
+  background-image: url("/bg-noise.png");
+  background-repeat: repeat;
+  background-blend-mode: difference;
+  background-size: 10%;
 }
 
 :root {

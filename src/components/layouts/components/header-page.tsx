@@ -43,10 +43,10 @@ export default function HeaderPage({ title, description }: HeaderPageProps) {
         </div>
       </div>
 
-      <div className="w-full h-full absolute top-0 bg-gradient-to-r from-primary/90 dark:from-[#121212] from-[0%] via-transparent dark:via-transparent via-[2%] to-transparent dark:to-transparent" />
-      <div className="w-full h-full absolute top-0 bg-gradient-to-l from-primary/90 dark:from-[#121212] from-[0%] via-transparent dark:via-transparent via-[2%] to-transparent dark:to-transparent" />
-      <div className="w-full h-full absolute top-0 bg-gradient-to-t from-primary/90 dark:from-[#121212] from-[0%] via-transparent dark:via-transparent via-[15%] to-transparent dark:to-transparent" />
-      <div className="w-full h-full absolute top-0 bg-gradient-to-b from-primary/90 dark:from-[#121212] from-[3%] via-transparent dark:via-transparent via-[15%] to-transparent dark:to-transparent" />
+      <div className="w-full h-full absolute top-0 bg-gradient-to-r from-[#faf6e8] dark:from-[#151515] from-[0%] via-transparent dark:via-transparent via-[2%] to-transparent dark:to-transparent" />
+      <div className="w-full h-full absolute top-0 bg-gradient-to-l from-[#faf6e8] dark:from-[#151515] from-[0%] via-transparent dark:via-transparent via-[2%] to-transparent dark:to-transparent" />
+      <div className="w-full h-full absolute top-0 bg-gradient-to-t from-[#faf6e8] dark:from-[#151515] from-[0%] via-transparent dark:via-transparent via-[15%] to-transparent dark:to-transparent" />
+      <div className="w-full h-full absolute top-0 bg-gradient-to-b from-[#faf6e8] dark:from-[#151515] from-[3%] via-transparent dark:via-transparent via-[15%] to-transparent dark:to-transparent" />
     </div>
   );
 }
