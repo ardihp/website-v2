@@ -22,7 +22,7 @@ export default function WorksView() {
                 <WorkItem
                   key={index}
                   work={work}
-                  delay={index < 6 ? 0.2 * index + 0.25 : 0.25}
+                  delay={index < 6 ? 0.1 * index + 0.15 : 0.15}
                   start="bottom"
                   end="bottom"
                 />
@@ -36,7 +36,7 @@ export default function WorksView() {
                 <WorkItem
                   key={index}
                   work={work}
-                  delay={index < 6 ? 0.2 * index + 0.25 : 0.25}
+                  delay={index < 6 ? 0.1 * index + 0.15 : 0.15}
                   start="bottom"
                   end="bottom"
                 />
