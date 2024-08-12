@@ -24,10 +24,10 @@ export default function PostItem({ post, delay, start, end }: PostItemsProps) {
               src={post?.cover?.file?.url || post?.cover?.external?.url}
               alt="Blog Cover Image"
               fill
-              sizes="700px"
+              sizes="400px"
               placeholder="blur"
               blurDataURL="https://dr.savee-cdn.com/things/6/6/abc7ac18a5073cdf581f47.webp"
-              className="object-cover object-top h-full w-auto"
+              className="object-cover object-center h-full w-auto"
             />
             <div className="bg-black/30 w-full h-full absolute top-0" />
           </div>
