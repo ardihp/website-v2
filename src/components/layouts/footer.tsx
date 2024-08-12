@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import FooterTechItem from "./components/footer-tech-item";
 import {
   IconBrandNextjs,
+  IconBrandNotion,
   IconBrandRadixUi,
   IconBrandTailwind,
   IconBrandVercel,
@@ -28,17 +29,42 @@ export default function FooterSection() {
             <FooterTechItem
               href="https://nextjs.org/"
               title="Next.js"
-              icon={<IconBrandNextjs size={18} className="text-secondary dark:text-white" />}
+              icon={
+                <IconBrandNextjs
+                  size={18}
+                  className="text-secondary dark:text-white"
+                />
+              }
             />
             <FooterTechItem
               href="https://tailwindcss.com/"
               title="Tailwind Css"
-              icon={<IconBrandTailwind size={18} className="text-secondary dark:text-white" />}
+              icon={
+                <IconBrandTailwind
+                  size={18}
+                  className="text-secondary dark:text-white"
+                />
+              }
             />
             <FooterTechItem
               href="https://ui.shadcn.com/"
               title="Radix with Shadcn/ui"
-              icon={<IconBrandRadixUi size={18} className="text-secondary dark:text-white" />}
+              icon={
+                <IconBrandRadixUi
+                  size={18}
+                  className="text-secondary dark:text-white"
+                />
+              }
+            />
+            <FooterTechItem
+              href="https://notion.so/"
+              title="Notion"
+              icon={
+                <IconBrandNotion
+                  size={18}
+                  className="text-secondary dark:text-white"
+                />
+              }
             />
             <FooterTechItem
               href="https://vercel.com/home"
