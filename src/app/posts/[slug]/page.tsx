@@ -12,6 +12,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 interface BlogSlugPageProps {
   params: {
@@ -42,21 +43,21 @@ export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink
+            <Link
               href="/"
               className="text-secondary/50 hover:text-secondary duration-200"
             >
               Home
-            </BreadcrumbLink>
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator>/</BreadcrumbSeparator>
           <BreadcrumbItem>
-            <BreadcrumbLink
+            <Link
               href="/posts"
               className="text-secondary/50 hover:text-secondary duration-200"
             >
               Posts
-            </BreadcrumbLink>
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator>/</BreadcrumbSeparator>
           <BreadcrumbItem className="text-secondary">
