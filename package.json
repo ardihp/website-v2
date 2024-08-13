@@ -18,6 +18,8 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
     "@tabler/icons-react": "^3.9.0",
+    "@umami/api-client": "^0.69.0",
+    "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
@@ -29,6 +31,7 @@
     "react": "^18",
     "react-dom": "^18",
     "shadcn-ui": "^0.8.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },
