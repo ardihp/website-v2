@@ -1,11 +1,35 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarItem from "./components/navbar-item";
 import Link from "next/link";
 
 export default function NavbarSection() {
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("scroll", () => {
+      if (scrollY >= 100) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    });
+
+    return () => {
+      document.removeEventListener("scroll", () => {});
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col py-8 items-center sticky top-0 dark:bg-transparent bg-primary/20 backdrop-blur-sm z-[10]">
+    <div
+      className={`flex flex-col py-8 items-center sticky top-0 dark:bg-transparent bg-[#faf6e8]/20 backdrop-blur-sm z-[10] shadow ${
+        showScroll
+          ? "shadow-secondary/15 dark:shadow-zinc-700/80"
+          : "shadow-transparent"
+      } duration-200`}
+    >
       <div className="flex justify-between w-full max-w-screen-lg rounded-full px-12">
         <Link
           href="/"

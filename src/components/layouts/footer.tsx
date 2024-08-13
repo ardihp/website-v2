@@ -23,9 +23,9 @@ export default function FooterSection() {
   return (
     <div className="w-full max-w-screen-lg mx-auto">
       <div className="flex items-center justify-between px-4 lg:px-12 py-10">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
           <p className="text-xs font-medium">Made by</p>
-          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50 border dark:border-zinc-800 border-secondary/20">
+          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50">
             <FooterTechItem
               href="https://nextjs.org/"
               title="Next.js"
@@ -80,20 +80,22 @@ export default function FooterSection() {
           </div>
         </div>
 
-        <div className="flex items-center shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50 border dark:border-zinc-800 border-secondary/20 rounded-full">
-          {["Dark", "Light", "System"].map((item, key) => (
-            <p
-              key={key}
-              className={`text-[12px] rounded-full py-[5px] px-[10px] font-medium cursor-pointer ${
-                currentTheme === item?.toLocaleLowerCase()
-                  ? "opacity-100 dark:bg-zinc-900 bg-secondary/10"
-                  : "opacity-50"
-              }`}
-              onClick={() => setTheme(item?.toLocaleLowerCase())}
-            >
-              {item}
-            </p>
-          ))}
+        <div className="p-2 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
+          <div className="flex items-center dark:bg-zinc-800/50 rounded-full">
+            {["Dark", "Light", "System"].map((item, key) => (
+              <p
+                key={key}
+                className={`text-[12px] rounded-full py-[5px] px-[10px] font-medium cursor-pointer ${
+                  currentTheme === item?.toLocaleLowerCase()
+                    ? "opacity-100 shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80"
+                    : "opacity-50"
+                }`}
+                onClick={() => setTheme(item?.toLocaleLowerCase())}
+              >
+                {item}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </div>
