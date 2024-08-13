@@ -18,9 +18,18 @@ interface PostsViewProps {
     | PartialDatabaseObjectResponse
     | DatabaseObjectResponse
   )[];
+  pages: any;
 }
 
-export default function PostsView({ posts }: PostsViewProps) {
+export default function PostsView({ posts, pages }: PostsViewProps) {
+  const pageView = (post: any) => {
+    return (
+      pages?.find((page: any) =>
+        page?.x?.includes(post?.properties?.slug?.rich_text?.[0]?.plain_text)
+      )?.y || 0
+    );
+  };
+
   return (
     <div className="flex flex-col max-w-screen-lg mx-auto w-full pt-[12px]">
       <HeaderPage
@@ -36,6 +45,7 @@ export default function PostsView({ posts }: PostsViewProps) {
                 <PostItem
                   key={index}
                   post={post}
+                  viewCount={pageView(post)}
                   delay={index < 4 ? 0.1 * index + 0.15 : 0.05 * index}
                   start="bottom"
                   end="bottom"
@@ -50,6 +60,7 @@ export default function PostsView({ posts }: PostsViewProps) {
                 <PostItem
                   key={index}
                   post={post}
+                  viewCount={pageView(post)}
                   delay={index < 4 ? 0.1 * index + 0.15 : 0.05 * index}
                   start="bottom"
                   end="bottom"

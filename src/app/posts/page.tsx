@@ -1,3 +1,4 @@
+import { getWebsiteMetrics } from "@/hooks/use-umami";
 import { fetchPages } from "@/lib/notion";
 import PostsView from "@/modules/posts/view";
 import { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 
 export default async function PostsPage() {
   const posts = await fetchPages();
+  const { pages } = await getWebsiteMetrics();
 
-  return <PostsView posts={posts.results} />;
+  return <PostsView posts={posts.results} pages={pages} />;
 }
