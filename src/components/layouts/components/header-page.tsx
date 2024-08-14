@@ -8,45 +8,24 @@ interface HeaderPageProps {
 
 export default function HeaderPage({ title, description }: HeaderPageProps) {
   return (
-    <div className="relative">
-      <div className="flex flex-col">
-        <div className="flex w-full">
-          <div className="w-full max-w-[36px] border-style border-secondary/15 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-          <div className="grid grid-cols-[1fr_.8fr_1fr] w-full">
-            <div className="flex items-center border-x-2 border-style border-secondary/15 w-full p-5 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80">
-              <DelayedItem start="left" end="bottom">
-                <p className="font-fredoka text-2xl font-medium">{title}</p>
-              </DelayedItem>
-            </div>
-            <div className="w-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-            <div className="border-x-2 border-style border-secondary/15 w-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
+    <DelayedItem start="bottom" end="bottom">
+      <article className="flex flex-col gap-4 mt-12 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[32px] pt-12 pb-10 px-16 relative shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
+        <div className="absolute top-[-40px] left-[54px] w-auto p-4 px-6 bg-[#faf6e8] dark:bg-[#151515] dark:bg-[url('/bg-noise.png')] bg-blend-hard-light">
+          <div className="p-4 rounded-[14px] w-fit h-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.2]">
+            <p className="shadowed-text text-primary text-[20px] font-[600]">
+              {title}
+            </p>
           </div>
-          <div className="w-full max-w-[36px] border-style border-secondary/15 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
         </div>
-        <div className="flex w-full">
-          <div className="w-full max-w-[36px] border-y-2 border-style border-secondary/15 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-          <div className="flex items-center border-2 border-style border-secondary/15 p-5 w-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80">
-            <DelayedItem delay={0.1} start="left" end="bottom">
-              <p className="font-manrope font-bold opacity-80">{description}</p>
-            </DelayedItem>
-          </div>
-          <div className="w-full max-w-[36px] border-y-2 border-style border-secondary/15 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-        </div>
-        <div className="flex w-full">
-          <div className="w-full max-w-[36px] border-style border-secondary/15 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-          <div className="grid grid-cols-[1fr_.8fr_1fr] h-[36px] w-full">
-            <div className="flex gap-4 items-center border-x-2 border-style border-secondary/15 w-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80"></div>
-            <div className="w-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-            <div className="border-x-2 border-style border-secondary/15 w-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-          </div>
-          <div className="w-full max-w-[36px] border-style border-secondary/15 shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80" />
-        </div>
-      </div>
 
-      <div className="w-full h-full absolute top-0 bg-gradient-to-r from-[#faf6e8] dark:from-[#151515] from-[0%] via-transparent dark:via-transparent via-[2%] to-transparent dark:to-transparent" />
-      <div className="w-full h-full absolute top-0 bg-gradient-to-l from-[#faf6e8] dark:from-[#151515] from-[0%] via-transparent dark:via-transparent via-[2%] to-transparent dark:to-transparent" />
-      <div className="w-full h-full absolute top-0 bg-gradient-to-t from-[#faf6e8] dark:from-[#151515] from-[0%] via-transparent dark:via-transparent via-[15%] to-transparent dark:to-transparent" />
-      <div className="w-full h-full absolute top-0 bg-gradient-to-b from-[#faf6e8] dark:from-[#151515] from-[3%] via-transparent dark:via-transparent via-[15%] to-transparent dark:to-transparent" />
-    </div>
+        <section className="rounded-[20px] w-fit h-fit dark:bg-zinc-900/40 bg-secondary/[0.01]">
+          <DelayedItem start="bottom" end="bottom" delay={0.1}>
+            <p className="shadowed-text font-medium text-xl w-[550px] text-secondary/70 text-pretty">
+              {description}
+            </p>
+          </DelayedItem>
+        </section>
+      </article>
+    </DelayedItem>
   );
 }
