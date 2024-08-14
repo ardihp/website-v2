@@ -8,7 +8,6 @@ import {
   IconBrandRadixUi,
   IconBrandTailwind,
   IconBrandVercel,
-  IconTriangleFilled,
 } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 
@@ -21,9 +20,9 @@ export default function FooterSection() {
   }, [theme]);
 
   return (
-    <div className="w-full max-w-screen-lg mx-auto">
-      <div className="flex items-center justify-between px-4 lg:px-12 py-10">
-        <div className="flex items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
+    <footer className="w-full max-w-screen-lg mx-auto">
+      <article className="flex items-center justify-between px-4 lg:px-12 py-10">
+        <section className="flex items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
           <p className="text-xs font-medium">Made by</p>
           <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50">
             <FooterTechItem
@@ -78,9 +77,9 @@ export default function FooterSection() {
               }
             />
           </div>
-        </div>
+        </section>
 
-        <div className="p-2 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
+        <section className="p-2 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
           <div className="flex items-center dark:bg-zinc-800/50 rounded-full">
             {["Dark", "Light", "System"].map((item, key) => (
               <p
@@ -96,8 +95,8 @@ export default function FooterSection() {
               </p>
             ))}
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </footer>
   );
 }

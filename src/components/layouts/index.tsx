@@ -17,9 +17,9 @@ export default function LayoutSection({ children }: { children: ReactNode }) {
         />
       </div>
       <NavbarSection />
-      <div className="w-full h-full flex flex-col flex-grow max-w-screen-lg mx-auto">
+      <main className="w-full h-full flex flex-col flex-grow max-w-screen-lg mx-auto">
         {children}
-      </div>
+      </main>
       <FooterSection />
     </div>
   );
