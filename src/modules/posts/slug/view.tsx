@@ -43,7 +43,7 @@ export default function PostBySlugView({
 
   return (
     <>
-      <div className="flex flex-col gap-4 max-w-screen-lg mx-auto w-full pt-[12px] px-[48px]">
+      <div className="flex flex-col gap-4 max-w-screen-lg mx-auto w-full px-[48px]">
         <motion.div
           className="progress-bar"
           style={{ scaleY: scrollYProgress }}
@@ -108,7 +108,7 @@ export default function PostBySlugView({
               views
             </p>
           </div>
-          <div className="p-4 shadow-inner w-full h-full mt-16 rounded-[32px] overflow-hidden shadow-secondary/10 dark:shadow-zinc-700">
+          <div className="p-4 shadow-inner w-full h-full mt-14 rounded-[32px] overflow-hidden shadow-secondary/10 dark:shadow-zinc-700">
             <div className="relative h-[430px] w-full rounded-[20px] overflow-hidden">
               <Image
                 src={post?.cover?.file?.url || post?.cover?.external?.url}
