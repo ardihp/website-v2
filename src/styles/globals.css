@@ -92,7 +92,7 @@ body {
   .shadowed-text {
     font-size: 64px;
     font-weight: bold;
-    color: rgba(71, 9, 0, 0.2);
+    color: rgba(71, 9, 0, 0.3);
     text-shadow: 0 5px 10px rgba(71, 9, 0, 0.2);
     line-height: 0.8em;
   }
