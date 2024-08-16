@@ -54,7 +54,7 @@ export default function PostBySlugView({
             <BreadcrumbItem>
               <Link
                 href="/"
-                className="dark:text-white/50 dark:hover:text-white text-secondary/50 hover:text-secondary duration-200"
+                className="dark:text-white text-secondary opacity-50 hover:opacity-80 font-medium duration-200"
               >
                 Home
               </Link>
@@ -63,13 +63,13 @@ export default function PostBySlugView({
             <BreadcrumbItem>
               <Link
                 href="/posts"
-                className="dark:text-white/50 dark:hover:text-white text-secondary/50 hover:text-secondary duration-200"
+                className="dark:text-white text-secondary opacity-50 hover:opacity-80 font-medium duration-200"
               >
                 Posts
               </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator>/</BreadcrumbSeparator>
-            <BreadcrumbItem className="dark:text-white text-secondary">
+            <BreadcrumbItem className="dark:text-white text-secondary opacity-80 font-medium">
               {post?.properties?.title?.title?.[0]?.plain_text}
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -93,7 +93,9 @@ export default function PostBySlugView({
           </h1>
           <div className="flex items-center gap-3 mt-6">
             <p className="font-manrope text-sm font-bold dark:text-white/70 text-secondary/60">
-              {dayjs(post?.created_time).format("DD MMMM YYYY")}
+              {dayjs(post?.properties?.created_at?.date?.start).format(
+                "DD MMMM YYYY"
+              )}
             </p>
             <IconTimeline
               size={18}
