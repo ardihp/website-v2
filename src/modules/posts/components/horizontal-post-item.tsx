@@ -20,8 +20,6 @@ export default function HorizontalPostItem({
   end,
   viewCount,
 }: PostItemsProps) {
-  console.log(post);
-
   return (
     <DelayedItem delay={delay} start={start} end={end}>
       <Link
@@ -66,7 +64,10 @@ export default function HorizontalPostItem({
 
             <div className="flex items-center gap-2 group-hover:gap-3 duration-200">
               <p className="text-sm font-medium opacity-80">Read More</p>
-              <IconArrowNarrowRight size={20} className="text-secondary/70 mt-[2px]" />
+              <IconArrowNarrowRight
+                size={20}
+                className="text-secondary/70 mt-[2px]"
+              />
             </div>
           </div>
         </div>
