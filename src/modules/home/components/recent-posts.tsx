@@ -45,7 +45,7 @@ export default function RecentPostSection({
           </div>
 
           <Link href="/posts" scroll>
-            <p className="shadowed-text text-base text-secondary/50 hover:underline underline-offset-0 hover:underline-offset-4 decoration-2 decoration-secondary/30 duration-300">
+            <p className="shadowed-text text-base text-secondary/60 hover:underline underline-offset-0 hover:underline-offset-4 decoration-2 decoration-secondary/30 duration-300">
               view posts
             </p>
           </Link>
