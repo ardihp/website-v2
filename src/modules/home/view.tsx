@@ -9,7 +9,6 @@ import {
 import React from "react";
 import IntroductionSection from "./components/introduction";
 import RecentPostSection from "./components/recent-posts";
-import ExperienceSection from "./components/experience";
 
 interface HomeViewProps {
   posts: (
@@ -25,8 +24,6 @@ export default function HomeView({ posts, pages }: HomeViewProps) {
   return (
     <article className="flex flex-col max-w-screen-lg mx-auto w-full h-full px-[48px]">
       <IntroductionSection />
-
-      <ExperienceSection />
 
       <RecentPostSection posts={posts} pages={pages} />
     </article>
