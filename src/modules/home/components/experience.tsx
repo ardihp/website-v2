@@ -1,5 +1,9 @@
 import React from "react";
 import DelayedItem from "@/components/layouts/components/delayed-item";
+import Image from "next/image";
+import { WorkExperience, workExperience } from "@/data/experience";
+import dayjs from "dayjs";
+import Link from "next/link";
 
 export default function ExperienceSection() {
   return (
@@ -16,16 +20,40 @@ export default function ExperienceSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-[1fr_75px_1fr] w-full">
-          <div className="flex flex-col w-full">
-            <div className="h-[300] w-full p-4 border border-secondary"></div>
-          </div>
-          <div className="flex flex-col w-full">
-            
-          </div>
-          <div className="flex flex-col w-full">
-            <div className="h-[300] w-full p-4 border border-secondary"></div>
-          </div>
+        <div className="flex flex-col gap-6 w-full">
+          {workExperience?.map((work: WorkExperience, index: number) => (
+            <div key={index} className="flex gap-6">
+              <div className="flex items-center justify-center w-full h-[90px] max-w-[90px] rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01]">
+                <Link href={work.link} target="_blank" passHref>
+                  <div className="relative h-[65px] w-[65px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
+                    <Image
+                      src={work?.logo}
+                      alt="Company Logo"
+                      fill
+                      sizes="200px"
+                      className="object-cover object-center"
+                    />
+                  </div>
+                </Link>
+              </div>
+              <div className="flex flex-col p-2 w-full">
+                <div className="flex items-center justify-between">
+                  <p className="font-manrope font-black text-lg opacity-70">
+                    {work.company}
+                  </p>
+
+                  <p className="text-xs opacity-80">
+                    {dayjs(work.start_date).format("MMM YYYY")} -{" "}
+                    {work?.end_date ? dayjs().format("MMM YYYY") : "current"}
+                  </p>
+                </div>
+                <p className="text-md opacity-70">{work.role}</p>
+                <p className="font-manrope text-xs font-medium mt-2 opacity-60 text-pretty">
+                  {work.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </article>
     </DelayedItem>
