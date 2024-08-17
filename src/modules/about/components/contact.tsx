@@ -25,13 +25,13 @@ function ContactItem({ icon, text, title, link }: ContactItemProps) {
       <Link href={link} className="group w-fit" target="_blank" passHref>
         <div className="flex items-center gap-2">
           {icon}
-          <IconSlash className="text-secondary/70" size={16} />
-          <p className="font-medium text-secondary/50">{title}</p>
-          <IconSlash className="text-secondary/70" size={16} />
-          <p className="font-medium text-secondary/70">{text}</p>
+          <IconSlash className="text-secondary/70 dark:text-white" size={16} />
+          <p className="font-medium text-secondary/50 dark:text-white/70">{title}</p>
+          <IconSlash className="text-secondary/70 dark:text-white" size={16} />
+          <p className="font-medium text-secondary/70 dark:text-white">{text}</p>
 
           <IconExternalLink
-            className="text-secondary/70 ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-2 duration-300"
+            className="text-secondary/70 dark:text-white ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-2 duration-300"
             size={16}
           />
         </div>
@@ -57,25 +57,25 @@ export default function ContactSection() {
 
         <section className="flex flex-col gap-6">
           <ContactItem
-            icon={<IconBrandGmail className="text-secondary/50" />}
+            icon={<IconBrandGmail className="text-secondary/50 dark:text-white/70" />}
             title="email"
             text="ardihp8@gmail.com"
             link="mailto:ardihp8@gmail.com"
           />
           <ContactItem
-            icon={<IconBrandInstagram className="text-secondary/50" />}
+            icon={<IconBrandInstagram className="text-secondary/50 dark:text-white/70" />}
             title="instagram"
             text="ardi.hp"
             link="https://www.instagram.com/ardi.hp/"
           />
           <ContactItem
-            icon={<IconBrandGithub className="text-secondary/50" />}
+            icon={<IconBrandGithub className="text-secondary/50 dark:text-white/70" />}
             title="github"
             text="ardi.hp"
             link="https://github.com/ardihp"
           />
           <ContactItem
-            icon={<IconBrandLinkedin className="text-secondary/50" />}
+            icon={<IconBrandLinkedin className="text-secondary/50 dark:text-white/70" />}
             title="linkedin"
             text="Ardiansyah Halim Putra"
             link="https://www.linkedin.com/in/ardi-hp"
@@ -83,8 +83,8 @@ export default function ContactSection() {
           <ContactItem
             icon={
               <div className="flex items-center gap-0">
-                <IconLetterCSmall className="text-secondary/50 ml-[-4px]" />
-                <IconLetterVSmall className="text-secondary/50 ml-[-16px]" />
+                <IconLetterCSmall className="text-secondary/50 dark:text-white/70 ml-[-4px]" />
+                <IconLetterVSmall className="text-secondary/50 dark:text-white/70 ml-[-16px]" />
               </div>
             }
             title="resume"

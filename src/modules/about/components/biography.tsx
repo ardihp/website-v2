@@ -20,15 +20,15 @@ export default function BiographySection() {
 
         <div className="flex flex-col gap-5 w-full">
           <DelayedItem start="bottom" end="bottom" delay={0.1}>
-            <div className="font-medium text-secondary/40">
+            <div className="font-medium text-secondary/40 dark:text-white/60">
               My name is{" "}
-              <span className="text-secondary/70">Ardiansyah Halim Putra</span>,
-              people call me <span className="text-secondary/70">Ardi</span>.
+              <span className="text-secondary/70 dark:text-white">Ardiansyah Halim Putra</span>,
+              people call me <span className="text-secondary/70 dark:text-white">Ardi</span>.
               Born and rise in{" "}
               <Link
                 href="https://www.google.com/search?q=jakarta"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 Jakarta, Indonesia
               </Link>
@@ -36,7 +36,7 @@ export default function BiographySection() {
               <Link
                 href="https://www.google.com/search?q=cengkareng"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 Cengkareng, Jakarta Barat
               </Link>
@@ -45,12 +45,12 @@ export default function BiographySection() {
           </DelayedItem>
 
           <DelayedItem start="bottom" end="bottom" delay={0.15}>
-            <div className="font-medium text-secondary/40">
+            <div className="font-medium text-secondary/40 dark:text-white/60">
               My journey in technology began shortly after I graduated from{" "}
               <Link
                 href="https://www.tzuchi.or.id"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 SMKS Cinta Kasih Tzu Chi
               </Link>{" "}
@@ -59,7 +59,7 @@ export default function BiographySection() {
               <Link
                 href="https://goto-impact.org/generasi-gigih/"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 Generasi Gigih
               </Link>{" "}
@@ -67,7 +67,7 @@ export default function BiographySection() {
               <Link
                 href="https://goto-impact.org"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 Yayasan Anak Bangsa Bisa aka YABB & Gojek
               </Link>
@@ -87,14 +87,14 @@ export default function BiographySection() {
           </DelayedItem>
 
           <DelayedItem start="bottom" end="bottom" delay={0.2}>
-            <p className="font-medium text-secondary/40">
+            <p className="font-medium text-secondary/40 dark:text-white/60">
               After completing the bootcamp, I had the opportunity to continue
               working with the Product Manager from my internship at a tech
               company called{" "}
               <Link
                 href="https://wis-pay.com"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 Wispay
               </Link>
@@ -105,12 +105,12 @@ export default function BiographySection() {
           </DelayedItem>
 
           <DelayedItem start="bottom" end="bottom" delay={0.25}>
-            <p className="font-medium text-secondary/40">
+            <p className="font-medium text-secondary/40 dark:text-white/60">
               Currently, I am a Frontend Developer at{" "}
               <Link
                 href="https://hyppe.id"
                 target="_blank"
-                className="text-secondary/60 underline"
+                className="text-secondary/60 dark:text-white underline"
               >
                 PT Hyppe Teknologi Indonesia
               </Link>

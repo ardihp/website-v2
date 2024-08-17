@@ -24,7 +24,7 @@ export default function HoverText({
   return (
     <HoverCard>
       <HoverCardTrigger href={link} target="_blank">
-        <span className="text-secondary/60 underline cursor-pointer">
+        <span className="text-secondary/60 dark:text-white underline cursor-pointer">
           {text}
         </span>
       </HoverCardTrigger>
@@ -40,8 +40,8 @@ export default function HoverText({
             />
           </div>
           <div className="flex flex-col gap-1">
-            <p className="text-lg text-secondary/70">{title}</p>
-            <p className="text-sm text-secondary/50 text-pretty line-clamp-2">
+            <p className="text-lg text-secondary/70 dark:text-white">{title}</p>
+            <p className="text-sm text-secondary/50 dark:text-white/70 text-pretty line-clamp-2">
               {desc}
             </p>
           </div>
