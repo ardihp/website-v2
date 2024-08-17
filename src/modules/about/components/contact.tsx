@@ -21,20 +21,22 @@ interface ContactItemProps {
 
 function ContactItem({ icon, text, title, link }: ContactItemProps) {
   return (
-    <Link href={link} className="group w-fit" target="_blank" passHref>
-      <div className="flex items-center gap-2">
-        {icon}
-        <IconSlash className="text-secondary/70" size={16} />
-        <p className="font-medium text-secondary/50">{title}</p>
-        <IconSlash className="text-secondary/70" size={16} />
-        <p className="font-medium text-secondary/70">{text}</p>
+    <DelayedItem start="bottom" end="bottom" delay={0.4}>
+      <Link href={link} className="group w-fit" target="_blank" passHref>
+        <div className="flex items-center gap-2">
+          {icon}
+          <IconSlash className="text-secondary/70" size={16} />
+          <p className="font-medium text-secondary/50">{title}</p>
+          <IconSlash className="text-secondary/70" size={16} />
+          <p className="font-medium text-secondary/70">{text}</p>
 
-        <IconExternalLink
-          className="text-secondary/70 ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-2 duration-300"
-          size={16}
-        />
-      </div>
-    </Link>
+          <IconExternalLink
+            className="text-secondary/70 ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-2 duration-300"
+            size={16}
+          />
+        </div>
+      </Link>
+    </DelayedItem>
   );
 }
 
