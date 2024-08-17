@@ -34,7 +34,7 @@ export default function IntroductionSection() {
 
         <DelayedItem start="bottom" end="bottom" delay={0.15}>
           <section className="rounded-[20px] w-fit h-fit dark:bg-zinc-900/40 bg-secondary/[0.01]">
-            <p className="shadowed-text font-medium text-xl w-[550px] text-secondary/60 text-pretty">
+            <p className="font-medium text-lg w-[550px] text-secondary/60 text-pretty">
               Frontend Developer with over two years of experience in crafting
               responsive and visually appealing websites.
             </p>
