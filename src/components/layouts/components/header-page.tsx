@@ -23,7 +23,7 @@ export default function HeaderPage({ title, description }: HeaderPageProps) {
 
         <section className="rounded-[20px] w-fit h-fit dark:bg-zinc-900/40 bg-secondary/[0.01]">
           <DelayedItem start="bottom" end="bottom">
-            <p className="shadowed-text font-medium text-xl text-secondary/70 text-pretty">
+            <p className="font-medium text-lg text-secondary/70 text-pretty">
               {description}
             </p>
           </DelayedItem>
