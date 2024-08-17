@@ -10,8 +10,7 @@ export default function WorksView() {
     <div className="flex flex-col max-w-screen-lg mx-auto w-full px-[48px]">
       <HeaderPage
         title="My Works"
-        description="Place of all my works that i have done including projects from
-                the interesting ideas that accross my mind."
+        description="Place of all my works that i have done including freelance projects and other projects from the interesting ideas that accross my mind."
       />
 
       <div className="grid md:grid-cols-2 mt-[48px] gap-8 h-full">
