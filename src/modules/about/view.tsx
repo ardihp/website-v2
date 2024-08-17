@@ -3,6 +3,7 @@
 import React from "react";
 import ExperienceSection from "./components/experience";
 import BiographySection from "./components/biography";
+import ContactSection from "./components/contact";
 
 export default function AboutView() {
   return (
@@ -10,6 +11,8 @@ export default function AboutView() {
       <BiographySection />
 
       <ExperienceSection />
+
+      <ContactSection />
     </article>
   );
 }
