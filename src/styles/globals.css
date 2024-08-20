@@ -8,7 +8,7 @@ body {
   background-image: url("/bg-noise.png");
   background-repeat: repeat;
   background-blend-mode: difference;
-  background-size: 200px;
+  background-size: 100px;
 }
 
 :root {
