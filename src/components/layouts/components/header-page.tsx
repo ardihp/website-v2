@@ -16,7 +16,7 @@ export default function HeaderPage({ title, description }: HeaderPageProps) {
         >
           <div className="p-3 md:p-4 rounded-[8px] md:rounded-[14px] w-fit h-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.2]">
             <p className="shadowed-text text-primary text-[16px] md:text-[20px] font-[600]">
-              Biography
+              {title}
             </p>
           </div>
         </div>
