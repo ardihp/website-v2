@@ -37,7 +37,7 @@ export default function IntroductionSection() {
         </DelayedItem>
 
         <DelayedItem start="bottom" end="bottom" delay={0.15} classes="w-full">
-          <p className="font-medium text-base md:text-lg w-full md:w-[550px] mr-auto opacity-60 text-pretty">
+          <p className="font-medium text-base md:text-lg w-full md:w-[550px] mr-auto text-pretty text-secondary/60 dark:text-white/70">
             Frontend Developer with over two years of experience in crafting
             responsive and visually appealing websites.
           </p>
