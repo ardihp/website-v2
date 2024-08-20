@@ -42,31 +42,31 @@ export default function HorizontalPostItem({
 
           <div className="flex flex-col gap-2 sm:gap-3 px-0 sm:px-4 pt-2 w-full">
             <div className="flex gap-2 items-center">
-              <p className="text-[10px] md:text-xs font-medium text-secondary/70">
+              <p className="text-[10px] md:text-xs font-medium text-secondary/70 dark:text-white/70">
                 {dayjs(post?.properties?.created_at?.date?.start).format(
                   "DD MMM YYYY"
                 )}
               </p>
-              <IconTimeline size={16} className="text-secondary" />
-              <p className="text-[10px] md:text-xs font-medium text-secondary/70">
+              <IconTimeline size={16} className="text-secondary/70 dark:text-white" />
+              <p className="text-[10px] md:text-xs font-medium text-secondary/70 dark:text-white/70">
                 {viewCount} views
               </p>
             </div>
 
             <div className="flex flex-col gap-2 md:gap-1">
-              <p className="font-fredoka text-lg md:text-xl font-medium leading-5 md:leading-6 text-pretty line-clamp-2 opacity-80">
+              <p className="font-fredoka text-lg md:text-xl font-medium leading-5 md:leading-6 text-pretty line-clamp-2 text-secondary/60 dark:text-white">
                 {post?.properties?.title?.title?.[0]?.plain_text}
               </p>
-              <p className="font-manrope text-xs md:text-sm font-bold text-pretty line-clamp-2 opacity-60">
+              <p className="font-manrope text-xs md:text-sm font-bold text-pretty line-clamp-2 text-secondary/40 dark:text-white/60">
                 {post?.properties?.description?.rich_text?.[0]?.plain_text}
               </p>
             </div>
 
             <div className="flex items-center gap-2 group-hover:gap-3 duration-200">
-              <p className="text-xs md:text-sm font-medium opacity-80">Read More</p>
+              <p className="text-xs md:text-sm font-medium text-secondary/60 dark:text-white">Read More</p>
               <IconArrowNarrowRight
                 size={20}
-                className="text-secondary/70 mt-[2px]"
+                className="text-secondary/70 dark:text-white/70 mt-[2px]"
               />
             </div>
           </div>

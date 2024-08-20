@@ -29,18 +29,18 @@ export default function IntroductionSection() {
               </div>
             </div>
             <div className="p-4 rounded-[14px] md:rounded-[20px] w-fit h-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01]">
-              <p className="shadowed-text text-[48px] md:text-[64px]">{"I'm Ardi"}</p>
+              <p className="shadowed-text text-[48px] md:text-[64px]">
+                {"I'm Ardi"}
+              </p>
             </div>
           </section>
         </DelayedItem>
 
         <DelayedItem start="bottom" end="bottom" delay={0.15} classes="w-full">
-          <section className="rounded-[20px] w-full h-fit">
-            <p className="font-medium text-base md:text-lg w-full md:w-[550px] mr-auto text-secondary/60 text-pretty">
-              Frontend Developer with over two years of experience in crafting
-              responsive and visually appealing websites.
-            </p>
-          </section>
+          <p className="font-medium text-base md:text-lg w-full md:w-[550px] mr-auto opacity-60 text-pretty">
+            Frontend Developer with over two years of experience in crafting
+            responsive and visually appealing websites.
+          </p>
         </DelayedItem>
       </article>
     </DelayedItem>
