@@ -39,17 +39,17 @@ export default function WorkItem({ work, delay, start, end }: WorkItemProps) {
             </div>
           </div>
 
-          <div className="flex flex-col pt-4 gap-1 md:gap-2">
-            <p className="font-fredoka font-medium text-lg md:text-xl text-secondary/70 dark:text-white">
+          <div className="flex flex-col pt-3 md:pt-4 gap-1 md:gap-2">
+            <p className="font-fredoka font-medium text-md md:text-xl text-secondary/60 dark:text-white">
               {work.company}
             </p>
-            <p className="font-manrope text-sm font-bold line-clamp-2 text-pretty text-secondary/40 dark:text-white/70">
+            <p className="font-manrope text-xs md:text-sm font-bold line-clamp-2 text-pretty text-secondary/40 dark:text-white/70">
               {work.desc}
             </p>
           </div>
 
           <div className="flex flex-col justify-center gap-[6px] mt-4 md:mt-6">
-            <p className="font-fredoka text-xs md:text-sm font-medium text-secondary/50 dark:text-white/60">
+            <p className="font-fredoka text-xs md:text-sm font-medium text-secondary/40 dark:text-white/60">
               {work.tech?.join(", ")}
             </p>
 
