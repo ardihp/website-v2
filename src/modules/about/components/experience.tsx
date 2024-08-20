@@ -39,19 +39,19 @@ export default function ExperienceSection() {
                   </div>
 
                   <div className="flex flex-col md:p-2 w-full">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between">
                       <p className="font-manrope font-black text-base md:text-md text-secondary/70 dark:text-white">
                         {work.company}
                       </p>
 
-                      <p className="text-sm font-medium opacity-60 hidden md:inline">
+                      <p className="text-xs md:text-sm font-medium text-secondary/50 dark:text-white/70 mb-2 md:mb-0">
                         {dayjs(work.start_date).format("MMM YYYY")} -{" "}
                         {work?.end_date
                           ? dayjs().format("MMM YYYY")
                           : "Present"}
                       </p>
                     </div>
-                    <p className="text-sm md:text-base font-medium text-secondary/50 dark:text-white/70">
+                    <p className="text-base font-medium text-secondary/50 dark:text-white/90">
                       {work.role}
                     </p>
                     <p className="font-manrope text-[10px] md:text-xs font-bold mt-1 md:mt-2 text-secondary/40 dark:text-white/70 text-pretty">
