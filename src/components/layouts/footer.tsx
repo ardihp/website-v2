@@ -21,9 +21,9 @@ export default function FooterSection() {
 
   return (
     <footer className="w-full max-w-screen-lg mx-auto">
-      <article className="flex items-center justify-between px-4 lg:px-12 py-10">
-        <section className="flex items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
-          <p className="text-xs font-medium">Made by</p>
+      <article className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between px-4 sm:px-8 lg:px-12 py-10">
+        <section className="flex w-fit sm:w-auto items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
+          <p className="text-xs font-medium opacity-50">Made by</p>
           <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50">
             <FooterTechItem
               href="https://nextjs.org/"
@@ -79,7 +79,7 @@ export default function FooterSection() {
           </div>
         </section>
 
-        <section className="p-2 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
+        <section className="p-2 w-fit sm:w-auto ml-auto sm:ml-0 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
           <div className="flex items-center dark:bg-zinc-800/50 rounded-full">
             {["Dark", "Light", "System"].map((item, key) => (
               <p

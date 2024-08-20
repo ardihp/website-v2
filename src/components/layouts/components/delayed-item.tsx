@@ -8,6 +8,7 @@ interface DelayedItemProps {
   delay?: number;
   start: string;
   end: string;
+  classes?: string;
 }
 
 export default function DelayedItem({
@@ -15,6 +16,7 @@ export default function DelayedItem({
   delay,
   start,
   end,
+  classes,
 }: DelayedItemProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -65,6 +67,7 @@ export default function DelayedItem({
         y: coordinatePosition(end).y,
       }}
       transition={{ delay: delay, type: "spring" }}
+      className={classes}
     >
       {children}
     </motion.div>
