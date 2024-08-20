@@ -31,14 +31,14 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
   };
 
   return (
-    <div className="flex flex-col max-w-screen-lg mx-auto w-full px-[48px]">
+    <div className="flex flex-col max-w-screen-lg mx-auto w-full gap-8 lg:gap-12 px-4 md:px-8 lg:px-[48px]">
       <HeaderPage
         title="My Posts"
         description="I post something random in here."
       />
 
-      <div className="grid grid-cols-2 mt-[48px] gap-8 h-full">
-        <div className="flex flex-col gap-8">
+      <div className="grid md:grid-cols-2 gap-8 h-full">
+        <div className="hidden md:flex flex-col gap-8">
           {posts.map(
             (post: any, index: number) =>
               index % 2 === 0 && (
@@ -53,7 +53,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
               )
           )}
         </div>
-        <div className="flex flex-col gap-8">
+        <div className="hidden md:flex flex-col gap-8">
           {posts.map(
             (post: any, index: number) =>
               index % 2 !== 0 && (
@@ -67,6 +67,18 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
                 />
               )
           )}
+        </div>
+        <div className="flex md:hidden flex-col gap-6 md:gap-8">
+          {posts.map((post: any, index: number) => (
+            <PostItem
+              key={index}
+              post={post}
+              viewCount={pageView(post)}
+              delay={index < 2 ? 0.1 * index + 0.15 : 0.05 * index}
+              start="bottom"
+              end="bottom"
+            />
+          ))}
         </div>
       </div>
     </div>

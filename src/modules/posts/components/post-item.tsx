@@ -26,7 +26,7 @@ export default function PostItem({
         passHref
       >
         <div className="flex flex-col items-center gap-2 h-full w-full p-4 rounded-[32px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] relative scale-100 top-0 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99]">
-          <div className="relative h-[320px] w-full rounded-[20px] overflow-hidden">
+          <div className="relative h-[280px] md:h-[320px] w-full rounded-[20px] overflow-hidden">
             <Image
               src={post?.cover?.file?.url || post?.cover?.external?.url}
               alt="Blog Cover Image"
