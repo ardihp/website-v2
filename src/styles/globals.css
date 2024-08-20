@@ -130,7 +130,6 @@ body {
   }
 
   .shadowed-text {
-    font-size: 64px;
     font-weight: bold;
     color: rgba(71, 9, 0, 0.3);
     text-shadow: 3px 3px 2px rgba(71, 9, 0, 0.15);
