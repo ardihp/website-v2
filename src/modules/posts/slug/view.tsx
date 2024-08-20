@@ -86,7 +86,7 @@ export default function PostBySlugView({
             </div>
           </DelayedItem>
           <DelayedItem start="bottom" end="bottom" delay={0.15}>
-            <h1 className="font-[600] text-[34px] md:text-[54px] leading-none text-pretty dark:text-white text-secondary text-center">
+            <h1 className="font-[600] text-[34px] md:text-[54px] leading-none text-pretty dark:text-white text-secondary/70 text-center">
               {post?.properties?.title?.title?.[0]?.plain_text}
             </h1>
           </DelayedItem>
