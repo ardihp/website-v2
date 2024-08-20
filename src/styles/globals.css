@@ -78,34 +78,44 @@ body {
   .post-page {
     @apply prose prose-p:font-bold prose-p:font-manrope !max-w-full dark:prose-p:text-white/60 
     prose-p:text-secondary/50 
-    prose-p:text-base 
+    prose-p:text-sm 
+    md:prose-p:text-base 
     prose-p:my-2 
     prose-p:text-pretty 
-    prose-p:px-12
+    prose-p:px-6
+    md:prose-p:px-12
 
     prose-hr:my-4 
     dark:prose-hr:border-white 
     prose-hr:border-secondary/40 
 
-    prose-h3:leading-8 
-    prose-h3:mt-14 
+    prose-h3:leading-7 
+    md:prose-h3:leading-8 
+    prose-h3:mt-10 
+    md:prose-h3:mt-14 
     dark:prose-h3:text-white 
     prose-h3:text-secondary/60 
-    prose-h3:px-12
+    prose-h3:px-6
+    md:prose-h3:px-12
 
     prose-figure:min-h-[150px]
     prose-figure:max-w-[600px]
-    prose-figure:mx-12 
+    prose-figure:mx-6
+    md:prose-figure:mx-12 
     prose-figure:my-4
     prose-figure:flex 
     prose-figure:flex-col 
     prose-figure:items-center 
+    prose-figure:justify-center
     prose-figure:gap-1 
 
-    prose-img:rounded-[14px] 
-    prose-img:overflow-hidden 
-    prose-img:w-full 
-    prose-img:h-auto 
+    prose-img:rounded-[8px] 
+    md:prose-img:rounded-[14px] 
+    prose-img:overflow-hidden  
+    prose-img:object-cover
+    prose-img:object-center
+    prose-img:w-full
+    prose-img:h-auto
 
     prose-lg 
 
@@ -126,7 +136,7 @@ body {
   }
 
   .scroll-top {
-    @apply fixed flex items-center justify-center bottom-12 right-12 h-[45px] w-[45px] rounded-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] hover:bg-secondary/[0.02] cursor-pointer;
+    @apply fixed flex items-center justify-center bottom-6 md:bottom-12 right-6 md:right-12 h-[45px] w-[45px] rounded-full shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] hover:bg-secondary/[0.02] cursor-pointer;
   }
 
   .shadowed-text {
