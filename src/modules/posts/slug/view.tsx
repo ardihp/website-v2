@@ -70,8 +70,8 @@ export default function PostBySlugView({
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="flex flex-col items-center mt-6 md:mt-10">
-          <DelayedItem start="bottom" end="bottom" delay={0.1}>
+        <DelayedItem start="bottom" end="bottom">
+          <div className="flex flex-col items-center mt-6 md:mt-10">
             <div className="flex items-center gap-4 mb-3">
               {post?.properties?.tags?.multi_select?.map(
                 (tag: any, index: number) => (
@@ -84,13 +84,9 @@ export default function PostBySlugView({
                 )
               )}
             </div>
-          </DelayedItem>
-          <DelayedItem start="bottom" end="bottom" delay={0.15}>
             <h1 className="font-[600] text-[34px] md:text-[54px] leading-none text-pretty dark:text-white text-secondary/70 text-center">
               {post?.properties?.title?.title?.[0]?.plain_text}
             </h1>
-          </DelayedItem>
-          <DelayedItem start="bottom" end="bottom" delay={0.2}>
             <div className="flex items-center gap-3 mt-4 md:mt-6">
               <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
                 {dayjs(post?.properties?.created_at?.date?.start).format(
@@ -110,37 +106,31 @@ export default function PostBySlugView({
                 views
               </p>
             </div>
-          </DelayedItem>
-        </div>
+          </div>
 
-        <DelayedItem start="bottom" end="bottom" delay={0.25}>
           <article className="flex flex-col mt-6 md:mt-8 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[20px] md:rounded-[32px] pb-6 md:pb-10 relative shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
             <div className="w-full">
-              <DelayedItem start="bottom" end="bottom" delay={0.3}>
-                <div className="p-4 md:p-6 w-full h-full rounded-[20px] md:rounded-[32px] overflow-hidden">
-                  <div className="relative h-[260px] md:h-[430px] w-full rounded-[12px] md:rounded-[18px] overflow-hidden">
-                    <Image
-                      src={post?.cover?.file?.url || post?.cover?.external?.url}
-                      fill
-                      sizes="1200px"
-                      alt={post?.properties?.title?.title?.[0]?.plain_text}
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+              <div className="p-4 md:p-6 w-full h-full rounded-[20px] md:rounded-[32px] overflow-hidden">
+                <div className="relative h-[260px] md:h-[430px] w-full rounded-[12px] md:rounded-[18px] overflow-hidden">
+                  <Image
+                    src={post?.cover?.file?.url || post?.cover?.external?.url}
+                    fill
+                    sizes="900px"
+                    alt={post?.properties?.title?.title?.[0]?.plain_text}
+                    className="object-cover"
+                    priority
+                  />
                 </div>
-              </DelayedItem>
+              </div>
             </div>
 
-            <DelayedItem start="bottom" end="bottom" delay={0.4}>
-              <section className="flex">
-                <div
-                  id="article"
-                  className="post-page"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                />
-              </section>
-            </DelayedItem>
+            <section className="flex">
+              <div
+                id="article"
+                className="post-page"
+                dangerouslySetInnerHTML={{ __html: html }}
+              />
+            </section>
           </article>
         </DelayedItem>
       </div>
