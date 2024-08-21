@@ -24,7 +24,7 @@ export default function FooterSection() {
       <article className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between px-4 sm:px-8 lg:px-12 py-6 md:py-10">
         <section className="flex w-fit sm:w-auto items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
           <p className="text-xs font-medium opacity-50">Made by</p>
-          <div className="flex items-center gap-2 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50">
+          <div className="flex items-center gap-1 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50">
             <FooterTechItem
               href="https://nextjs.org/"
               title="Next.js"

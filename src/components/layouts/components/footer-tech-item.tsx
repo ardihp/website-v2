@@ -22,9 +22,9 @@ export default function FooterTechItem({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger className="footer-tech-item">
-          <Link href={href} target="_blank" passHref>
-            <div className="flex rounded-full relative opacity-50 hover:opacity-100">
+        <TooltipTrigger role="button" aria-label={title}>
+          <Link href={href} aria-label={title} target="_blank" passHref>
+            <div className="flex items-center justify-center h-[24px] w-[24px] rounded-full relative opacity-50 hover:opacity-100">
               {icon}
             </div>
           </Link>

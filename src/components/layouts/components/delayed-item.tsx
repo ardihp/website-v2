@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useRef } from "react";
+import React, { memo, ReactNode, useRef } from "react";
 import { useInView, motion } from "framer-motion";
 
 interface DelayedItemProps {
@@ -11,7 +11,7 @@ interface DelayedItemProps {
   classes?: string;
 }
 
-export default function DelayedItem({
+const DelayedItem = memo(function DelayedItem({
   children,
   delay,
   start,
@@ -72,4 +72,6 @@ export default function DelayedItem({
       {children}
     </motion.div>
   );
-}
+});
+
+export default DelayedItem;
