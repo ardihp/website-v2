@@ -27,16 +27,16 @@ const DelayedItem = memo(function DelayedItem({
 
     switch (value) {
       case "top":
-        y = -15;
+        y = -8;
         break;
       case "left":
-        x = -15;
+        x = -8;
         break;
       case "right":
-        x = 15;
+        x = 8;
         break;
       case "bottom":
-        y = 15;
+        y = 8;
         break;
 
       default:
@@ -66,7 +66,7 @@ const DelayedItem = memo(function DelayedItem({
         x: coordinatePosition(end).x,
         y: coordinatePosition(end).y,
       }}
-      transition={{ delay: delay, type: "spring" }}
+      transition={{ delay: delay }}
       className={classes}
     >
       {children}
