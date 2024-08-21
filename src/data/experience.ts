@@ -5,10 +5,19 @@ export interface WorkExperience {
   start_date: string;
   end_date: string | null;
   description: string;
-  link: string;
+  link?: string;
 }
 
 export const workExperience: WorkExperience[] = [
+  {
+    logo: "/favicon/android-chrome-192x192.png",
+    company: "Freelancer",
+    role: "Frontend Engineer",
+    start_date: "2023-01-01",
+    end_date: null,
+    description: `Developed and designed web mockup with cross-browser compatibility for company profile website, complete with selling features to sell more than 100+ products for international sales.`,
+    // link: "/works",
+  },
   {
     logo: "/experience/hyppe.png",
     company: "PT. Hyppe Teknologi Indonesia",

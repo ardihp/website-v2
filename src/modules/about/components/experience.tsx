@@ -20,7 +20,12 @@ export default function ExperienceSection() {
 
       <div className="flex flex-col gap-8 w-full">
         {workExperience?.map((work: WorkExperience, index: number) => (
-          <Link key={index} href={work.link} target="_blank" passHref>
+          <Link
+            key={index}
+            href={work?.link ? work?.link : "/works"}
+            target={work?.link ? "_blank" : "_self"}
+            passHref
+          >
             <div className="flex flex-col md:flex-row gap-3 md:gap-6">
               <div className="flex items-center justify-center w-full h-[65px] md:h-[90px] max-w-[65px] md:max-w-[90px] rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01]">
                 <div className="relative h-[45px] md:h-[65px] w-[45px] md:w-[65px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
@@ -43,7 +48,9 @@ export default function ExperienceSection() {
 
                   <p className="text-xs md:text-sm font-medium text-secondary/50 dark:text-white/70 mb-2 md:mb-0">
                     {dayjs(work.start_date).format("MMM YYYY")} -{" "}
-                    {work?.end_date ? dayjs().format("MMM YYYY") : "Present"}
+                    {work?.end_date
+                      ? dayjs(work?.end_date).format("MMM YYYY")
+                      : "Present"}
                   </p>
                 </div>
                 <p className="text-base font-medium text-secondary/50 dark:text-white/90">
