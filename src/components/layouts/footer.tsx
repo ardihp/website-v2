@@ -80,19 +80,27 @@ export default function FooterSection() {
         </section>
 
         <section className="p-2 w-fit sm:w-auto ml-auto sm:ml-0 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
-          <div className="flex items-center dark:bg-zinc-800/50 rounded-full">
+          <div className="flex items-center dark:bg-zinc-800/50 rounded-full h-full">
             {["Dark", "Light", "System"].map((item, key) => (
-              <p
+              <div
                 key={key}
-                className={`text-[12px] rounded-full py-[5px] px-[10px] font-medium cursor-pointer ${
+                className={`flex items-center rounded-full cursor-pointer overflow-hidden h-full ${
                   currentTheme === item?.toLocaleLowerCase()
-                    ? "opacity-100 shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80"
-                    : "opacity-50"
+                    ? "shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80"
+                    : ""
                 }`}
-                onClick={() => setTheme(item?.toLocaleLowerCase())}
               >
-                {item}
-              </p>
+                <p
+                  className={`text-[12px] py-[5px] font-medium px-[10px] ${
+                    currentTheme === item?.toLocaleLowerCase()
+                      ? "opacity-100"
+                      : "opacity-50"
+                  }`}
+                  onClick={() => setTheme(item?.toLocaleLowerCase())}
+                >
+                  {item}
+                </p>
+              </div>
             ))}
           </div>
         </section>
