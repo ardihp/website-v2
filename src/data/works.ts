@@ -52,8 +52,8 @@ export const listWorks: Work[] = [
   {
     company: "Poke Render",
     desc: "Learn the difference between CSR and SSR using data from Poke API",
-    image: "/logo.png",
+    image: "/works/poke-ball.png",
     tech: ["Next.js", "TypeScript"],
-    live: "",
+    live: "https://learn-rendering.vercel.app",
   },
 ];
