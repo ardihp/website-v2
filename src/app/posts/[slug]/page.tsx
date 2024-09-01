@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchBySlug, fetchPageBlocks, notion } from "@/lib/notion";
+import { fetchBySlug, fetchPageBlocks, fetchPages, notion } from "@/lib/notion";
 import { notFound } from "next/navigation";
 import { NotionRenderer } from "@notion-render/client";
 import hljsPlugin from "@notion-render/hljs-plugin";
@@ -11,6 +11,16 @@ interface BlogSlugPageProps {
   params: {
     slug: string;
   };
+}
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const posts = await fetchPages();
+
+  return posts.results.map((post: any) => ({
+    slug: post?.properties?.slug?.rich_text?.[0]?.plain_text,
+  }));
 }
 
 export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
