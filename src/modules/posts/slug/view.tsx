@@ -13,6 +13,7 @@ import Image from "next/image";
 import { IconArrowNarrowUp, IconTimeline } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import DelayedItem from "@/components/layouts/components/delayed-item";
+import ImageKit from "@/components/layouts/components/imagekit";
 
 interface PostBySlugViewProps {
   post: any;
@@ -26,6 +27,9 @@ export default function PostBySlugView({
   pages,
 }: PostBySlugViewProps) {
   const [showScroll, setShowScroll] = useState(false);
+  const imagePath = post?.cover?.external?.url
+    ?.split("/")?.[3]
+    ?.split("?")?.[0];
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -112,13 +116,11 @@ export default function PostBySlugView({
             <div className="w-full">
               <div className="p-4 md:p-6 w-full h-full rounded-[20px] md:rounded-[32px] overflow-hidden">
                 <div className="relative h-[260px] md:h-[430px] w-full rounded-[12px] md:rounded-[18px] overflow-hidden">
-                  <Image
-                    src={post?.cover?.file?.url || post?.cover?.external?.url}
-                    fill
-                    sizes="900px"
-                    alt={post?.properties?.title?.title?.[0]?.plain_text}
+                  <ImageKit
+                    path={imagePath}
+                    alt="Blog Cover Image"
                     className="object-cover"
-                    priority
+                    fill
                   />
                 </div>
               </div>

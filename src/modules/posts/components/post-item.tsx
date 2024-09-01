@@ -1,3 +1,4 @@
+import ImageKit from "@/components/layouts/components/imagekit";
 import { IconTimeline } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,10 @@ interface PostItemsProps {
 }
 
 export default function PostItem({ post, viewCount }: PostItemsProps) {
+  const imagePath = post?.cover?.external?.url
+    ?.split("/")?.[3]
+    ?.split("?")?.[0];
+
   return (
     <Link
       href={`/posts/${post?.properties?.slug?.rich_text?.[0]?.plain_text}`}
@@ -16,14 +21,11 @@ export default function PostItem({ post, viewCount }: PostItemsProps) {
     >
       <div className="flex flex-col items-center gap-2 h-full w-full p-4 rounded-[32px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] relative scale-100 top-0 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99]">
         <div className="relative h-[280px] md:h-[320px] w-full rounded-[20px] overflow-hidden">
-          <Image
-            src={post?.cover?.file?.url || post?.cover?.external?.url}
+          <ImageKit
+            path={imagePath}
             alt="Blog Cover Image"
+            className="object-cover object-center w-full"
             fill
-            sizes="400px"
-            placeholder="blur"
-            blurDataURL="https://dr.savee-cdn.com/things/6/6/abc7ac18a5073cdf581f47.webp"
-            className="object-cover object-center h-full w-auto"
           />
           <div className="bg-black/30 w-full h-full absolute top-0" />
         </div>
