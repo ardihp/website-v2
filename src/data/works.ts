@@ -50,6 +50,13 @@ export const listWorks: Work[] = [
     live: "https://lucydreamart.com",
   },
   {
+    company: "Dashboard Lucy Dream Art",
+    desc: "Dashboard Lucy Dream Art",
+    image: "/works/lucydream.jpeg",
+    tech: ["Next.js", "MUI Material", "Socket.io"],
+    live: "",
+  },
+  {
     company: "Poke Render",
     desc: "Learn the difference between CSR and SSR using data from Poke API",
     image: "/works/poke-ball.png",
