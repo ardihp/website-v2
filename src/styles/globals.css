@@ -76,7 +76,9 @@ body {
   }
 
   .post-page {
-    @apply prose prose-p:font-bold prose-p:font-manrope !max-w-full dark:prose-p:text-white/60 
+    @apply prose prose-p:font-bold prose-p:font-manrope !max-w-full prose-figure:!text-white
+    
+    dark:prose-p:text-white/60
     prose-p:text-secondary/50 
     prose-p:text-sm 
     md:prose-p:text-base 
@@ -108,7 +110,7 @@ body {
     prose-figure:items-center 
     prose-figure:justify-center
     prose-figure:gap-1 
-
+    
     prose-img:rounded-[8px] 
     md:prose-img:rounded-[14px] 
     prose-img:overflow-hidden  
@@ -116,10 +118,13 @@ body {
     prose-img:object-center
     prose-img:w-full
     prose-img:h-auto
+    prose-img:min-h-[300px]
 
     prose-lg 
 
+    dark:prose-blockquote:text-white/90
     prose-blockquote:text-secondary/60 
+    dark:prose-blockquote:border-white 
     prose-blockquote:border-secondary/50 
     prose-blockquote:py-2
     prose-blockquote:my-5 
@@ -127,6 +132,10 @@ body {
 
     prose-a:text-secondary
     prose-a:text-sm;
+
+    legend {
+      @apply dark:text-white;
+    }
   }
 
   .post-page {
