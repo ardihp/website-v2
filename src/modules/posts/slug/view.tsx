@@ -30,6 +30,10 @@ export default function PostBySlugView({
   const imagePath = post?.cover?.external?.url
     ?.split("/")?.[3]
     ?.split("?")?.[0];
+  const pageViews =
+    pages?.find((page: any) =>
+      page?.value?.includes(post?.properties?.slug?.rich_text?.[0]?.plain_text)
+    )?.count || 0;
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -102,12 +106,7 @@ export default function PostBySlugView({
                 className="dark:text-white/70 text-secondary/60"
               />
               <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                {pages?.find((page: any) =>
-                  page?.x?.includes(
-                    post?.properties?.slug?.rich_text?.[0]?.plain_text
-                  )
-                )?.y || 0}{" "}
-                views
+                {pageViews} views
               </p>
             </div>
           </div>

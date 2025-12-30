@@ -22,11 +22,13 @@ interface PostsViewProps {
 }
 
 export default function PostsView({ posts, pages }: PostsViewProps) {
-  const pageView = (post: any) => {
+  const pageViews = (post: any) => {
     return (
       pages?.find((page: any) =>
-        page?.x?.includes(post?.properties?.slug?.rich_text?.[0]?.plain_text)
-      )?.y || 0
+        page?.value?.includes(
+          post?.properties?.slug?.rich_text?.[0]?.plain_text
+        )
+      )?.count || 0
     );
   };
 
@@ -46,7 +48,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
                   <PostItem
                     key={index}
                     post={post}
-                    viewCount={pageView(post)}
+                    viewCount={pageViews(post)}
                   />
                 )
             )}
@@ -58,14 +60,14 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
                   <PostItem
                     key={index}
                     post={post}
-                    viewCount={pageView(post)}
+                    viewCount={pageViews(post)}
                   />
                 )
             )}
           </div>
           <div className="flex md:hidden flex-col gap-6 md:gap-8">
             {posts.map((post: any, index: number) => (
-              <PostItem key={index} post={post} viewCount={pageView(post)} />
+              <PostItem key={index} post={post} viewCount={pageViews(post)} />
             ))}
           </div>
         </div>

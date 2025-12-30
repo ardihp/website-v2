@@ -25,8 +25,10 @@ export default function RecentPostSection({
   const pageView = (post: any) => {
     return (
       pages?.find((page: any) =>
-        page?.x?.includes(post?.properties?.slug?.rich_text?.[0]?.plain_text)
-      )?.y || 0
+        page?.value?.includes(
+          post?.properties?.slug?.rich_text?.[0]?.plain_text
+        )
+      )?.count || 0
     );
   };
 
