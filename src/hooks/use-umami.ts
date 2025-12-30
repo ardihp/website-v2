@@ -5,15 +5,14 @@ const client = getClient({
   apiEndpoint: process.env.UMAMI_API_CLIENT_ENDPOINT,
 });
 
+const websiteID = process.env.UMAMI_WEB_ID!;
+
 export async function getWebsiteMetrics() {
-  const { data: pages } = await client.getWebsiteMetrics(
-    process.env.UMAMI_WEB_ID!,
-    {
-      startAt: new Date("2024-08-01").getTime(),
-      endAt: new Date().getTime(),
-      type: "url",
-    }
-  );
+  const { data: pages } = await client.getWebsiteValues(websiteID, {
+    startAt: new Date("2024-08-01").getTime(),
+    endAt: new Date().getTime(),
+    type: "path",
+  });
 
   return { pages };
 }
