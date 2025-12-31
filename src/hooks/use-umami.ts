@@ -11,6 +11,7 @@ export async function getWebsiteMetrics() {
   const { data: pages } = await client.getWebsiteValues(websiteID, {
     startAt: new Date("2024-08-01").getTime(),
     endAt: new Date().getTime(),
+    // @ts-expect-error
     type: "path",
   });
 
