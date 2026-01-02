@@ -22,9 +22,10 @@ export default function PostItem({ post, viewCount }: PostItemsProps) {
       <div className="flex flex-col items-center gap-2 h-full w-full p-4 rounded-[32px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] relative scale-100 top-0 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99]">
         <div className="relative h-[280px] md:h-[320px] w-full rounded-[20px] overflow-hidden">
           <ImageKit
-            path={imagePath}
+            src={imagePath}
             alt="Blog Cover Image"
             className="object-cover object-center w-full"
+            sizes="600px"
             fill
           />
           <div className="bg-black/30 w-full h-full absolute top-0" />

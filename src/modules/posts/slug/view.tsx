@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import dayjs from "dayjs";
-import Image from "next/image";
 import { IconArrowNarrowUp, IconTimeline } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import DelayedItem from "@/components/layouts/components/delayed-item";
@@ -116,9 +115,10 @@ export default function PostBySlugView({
               <div className="p-4 md:p-6 w-full h-full rounded-[20px] md:rounded-[32px] overflow-hidden">
                 <div className="relative h-[260px] md:h-[430px] w-full rounded-[12px] md:rounded-[18px] overflow-hidden">
                   <ImageKit
-                    path={imagePath}
+                    src={imagePath}
                     alt="Blog Cover Image"
                     className="object-cover"
+                    sizes="600px"
                     fill
                   />
                 </div>

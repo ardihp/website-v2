@@ -2,7 +2,6 @@ import { IconArrowNarrowRight, IconTimeline } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import React from "react";
-import { IKImage } from "imagekitio-next";
 import ImageKit from "@/components/layouts/components/imagekit";
 
 interface PostItemsProps {
@@ -26,9 +25,10 @@ export default function HorizontalPostItem({
       <div className="flex flex-col sm:flex-row items-start gap-2 h-full w-full p-4 group rounded-[16px] sm:rounded-[24px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] scale-100 relative top-0 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99]">
         <div className="relative h-[160px] sm:h-[140px] w-full sm:max-w-[140px] lg:max-w-[200px] rounded-[8px] sm:rounded-[14px] overflow-hidden">
           <ImageKit
-            path={imagePath}
+            src={imagePath}
             alt="Blog Cover Image"
             className="object-cover object-center w-full"
+            sizes="600px"
             fill
           />
           <div className="bg-black/30 w-full h-full absolute top-0" />
