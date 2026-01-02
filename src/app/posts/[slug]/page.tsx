@@ -8,9 +8,7 @@ import PostBySlugView from "@/modules/posts/slug/view";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
 
 interface BlogSlugPageProps {
-  params: {
-    slug: string;
-  };
+  slug: string;
 }
 
 export const dynamicParams = false;
@@ -23,7 +21,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
+export default async function BlogSlugPage({
+  params,
+}: {
+  params: Promise<BlogSlugPageProps>;
+}) {
   const { slug } = await params;
   const post: any = await fetchBySlug(slug);
   const { pages } = await getWebsiteMetrics();
