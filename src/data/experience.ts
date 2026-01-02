@@ -24,7 +24,7 @@ export const workExperience: WorkExperience[] = [
     ],
   },
   {
-    logo: "/experience/steradian.jfif",
+    logo: "/experience/steradian.jpg",
     company: "PT. Steradian Data Optima",
     role: "Frontend Developer",
     start_date: "2025-07-27",
