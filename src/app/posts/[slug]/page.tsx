@@ -24,7 +24,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
-  const post: any = await fetchBySlug(params.slug);
+  const { slug } = await params;
+  const post: any = await fetchBySlug(slug);
   const { pages } = await getWebsiteMetrics();
 
   if (!post) {
