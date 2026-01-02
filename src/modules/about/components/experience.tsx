@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { WorkExperience, workExperience } from "@/data/experience";
+import type { WorkExperience } from "@/data/experience";
+import { workExperience } from "@/data/experience";
 import dayjs from "dayjs";
 import Link from "next/link";
 
@@ -27,8 +28,8 @@ export default function ExperienceSection() {
             passHref
           >
             <div className="flex flex-col md:flex-row gap-3 md:gap-6">
-              <div className="flex items-center justify-center w-full h-[65px] md:h-[90px] max-w-[65px] md:max-w-[90px] rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01]">
-                <div className="relative h-[45px] md:h-[65px] w-[45px] md:w-[65px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
+              <div className="flex items-center justify-center w-full h-[72px] md:h-[80px] max-w-[72px] md:max-w-[80px] rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01]">
+                <div className="relative size-[48px] md:size-[56px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
                   <Image
                     src={work?.logo}
                     alt="Company Logo"
