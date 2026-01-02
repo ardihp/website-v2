@@ -95,7 +95,7 @@ export default function ContactSection() {
           }
           title="resume"
           text="Ardiansyah Halim Putra"
-          link="https://drive.google.com/file/d/1Qzn5g2Sb64zaowcielgfEPsWgUurwpPb/view?usp=sharing"
+          link="https://drive.google.com/file/d/1W771KkKruTaHKY2PT_Z3NiGYe8J5gyCu/view?usp=sharing"
         />
       </section>
     </article>
