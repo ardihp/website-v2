@@ -22,7 +22,7 @@ export default function BiographySection() {
 
         <div className="flex flex-col gap-5 w-full">
           <div className="font-medium text-secondary/40 dark:text-white/60 text-sm md:text-base">
-            Hello! I'am{" "}
+            Hello! {`I'm `}
             <span className="text-secondary/70 dark:text-white">
               Ardiansyah Halim Putra
             </span>
