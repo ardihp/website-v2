@@ -11,7 +11,7 @@ interface WorkItemProps {
   end: string;
 }
 
-export default function WorkItem({ work, delay, start, end }: WorkItemProps) {
+export default function WorkItem({ work }: WorkItemProps) {
   return (
     <Link
       href={work.live || "#"}
