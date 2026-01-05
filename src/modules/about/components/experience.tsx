@@ -33,7 +33,7 @@ export default function ExperienceSection() {
                 key={index}
                 href={work?.link ? work?.link : "/works"}
                 target={work?.link ? "_blank" : "_self"}
-                className="flex items-center w-full h-[72px] md:h-[80px] max-w-[72px] md:max-w-[80px] justify-center rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-[#f5f0e2] z-10"
+                className="group flex items-center w-full h-[72px] md:h-[80px] max-w-[72px] md:max-w-[80px] justify-center rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-[#f5f0e2] z-10"
                 passHref
               >
                 <div className="relative size-[48px] md:size-[56px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
@@ -42,7 +42,7 @@ export default function ExperienceSection() {
                     alt="Company Logo"
                     fill
                     sizes="200px"
-                    className="object-cover object-center"
+                    className="object-cover object-center grayscale group-hover:grayscale-0 duration-300"
                     priority
                   />
                 </div>

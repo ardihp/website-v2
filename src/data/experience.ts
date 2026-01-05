@@ -14,8 +14,8 @@ export interface WorkExperience {
 export const workExperience: WorkExperience[] = [
   {
     logo: "/favicon/android-chrome-192x192.png",
-    company: "Freelancer",
-    role: "Frontend Engineer",
+    company: "Freelance",
+    role: "Frontend Developer",
     start_date: "2023-01-01",
     end_date: null,
     location: "Jakarta",
