@@ -55,10 +55,10 @@ export default function ExperienceSection() {
                   </p>
 
                   <p className="font-manrope text-[10px] md:text-xs font-bold text-secondary/50 dark:text-white/70 mb-2 md:mb-0">
-                    {dayjs(work.start_date).format("MMM YYYY")} -{" "}
+                    {dayjs(work.start_date).format("MMM YYYY")} --{" "}
                     {work?.end_date
                       ? dayjs(work?.end_date).format("MMM YYYY")
-                      : "Current"}
+                      : "Present"}
                   </p>
                 </div>
                 <p className="font-manrope text-xs font-bold text-secondary/50 dark:text-white/90 mt-0.5">
