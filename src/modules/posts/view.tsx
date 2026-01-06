@@ -2,33 +2,30 @@
 
 import React from "react";
 import HeaderPage from "@/components/layouts/components/header-page";
-import {
-  DatabaseObjectResponse,
-  PageObjectResponse,
-  PartialDatabaseObjectResponse,
-  PartialPageObjectResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 import PostItem from "./components/post-item";
 import DelayedItem from "@/components/layouts/components/delayed-item";
 
+export interface PostItemProps {
+  slug: string;
+  body: {
+    title: string;
+    seoTitle: string;
+    abstract: string;
+    thumbnail: string;
+    publishedOn: string;
+    tags: string[];
+  };
+}
+
 interface PostsViewProps {
-  posts: (
-    | PageObjectResponse
-    | PartialPageObjectResponse
-    | PartialDatabaseObjectResponse
-    | DatabaseObjectResponse
-  )[];
+  posts: PostItemProps[];
   pages: any;
 }
 
 export default function PostsView({ posts, pages }: PostsViewProps) {
-  const pageViews = (post: any) => {
+  const pageViews = (post: PostItemProps) => {
     return (
-      pages?.find((page: any) =>
-        page?.value?.includes(
-          post?.properties?.slug?.rich_text?.[0]?.plain_text
-        )
-      )?.count || 0
+      pages?.find((page: any) => page?.value?.includes(post.slug))?.count || 0
     );
   };
 
@@ -40,36 +37,16 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
           description="I post something random in here."
         />
 
-        <div className="grid md:grid-cols-2 gap-8 h-full">
-          <div className="hidden md:flex flex-col gap-8">
-            {posts.map(
-              (post: any, index: number) =>
-                index % 2 === 0 && (
-                  <PostItem
-                    key={index}
-                    post={post}
-                    viewCount={pageViews(post)}
-                  />
-                )
-            )}
-          </div>
-          <div className="hidden md:flex flex-col gap-8">
-            {posts.map(
-              (post: any, index: number) =>
-                index % 2 !== 0 && (
-                  <PostItem
-                    key={index}
-                    post={post}
-                    viewCount={pageViews(post)}
-                  />
-                )
-            )}
-          </div>
-          <div className="flex md:hidden flex-col gap-6 md:gap-8">
-            {posts.map((post: any, index: number) => (
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 h-full">
+          {posts
+            .sort(
+              (a, b) =>
+                new Date(b.body.publishedOn).getTime() -
+                new Date(a.body.publishedOn).getTime()
+            )
+            .map((post: PostItemProps, index: number) => (
               <PostItem key={index} post={post} viewCount={pageViews(post)} />
             ))}
-          </div>
         </div>
       </div>
     </DelayedItem>
