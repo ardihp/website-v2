@@ -2,10 +2,15 @@ import React from "react";
 
 interface HeaderPageProps {
   title: string;
-  description: string;
+  description?: string;
+  children?: React.ReactNode;
 }
 
-export default function HeaderPage({ title, description }: HeaderPageProps) {
+export default function HeaderPage({
+  title,
+  description,
+  children,
+}: HeaderPageProps) {
   return (
     <article className="gap-4 mt-10 md:mt-12 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[20px] md:rounded-[32px] p-6 pt-8 md:pt-12 md:pb-10 md:px-10 lg:px-16 relative shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
       <div
@@ -24,6 +29,8 @@ export default function HeaderPage({ title, description }: HeaderPageProps) {
           {description}
         </p>
       </section>
+
+      {children}
     </article>
   );
 }
