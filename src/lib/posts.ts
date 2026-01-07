@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { PostItemProps } from "@/modules/posts/view";
+import { DetailPostItemProps } from "@/modules/posts/slug/view";
 
 // Back to the root folder
 const root = process.cwd();
@@ -58,5 +59,5 @@ export async function getPostBySlug(slug: string) {
   return {
     body,
     content,
-  };
+  } as DetailPostItemProps;
 }
