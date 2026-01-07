@@ -1,7 +1,9 @@
 import React from "react";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
-import { getPosts } from "@/lib/posts";
+import { getPostBySlug, getPosts } from "@/lib/posts";
 import { PostItemProps } from "@/modules/posts/view";
+import PostBySlugView from "@/modules/posts/slug/view";
+import { serialize } from "next-mdx-remote/serialize";
 
 interface BlogSlugPageProps {
   slug: string;
@@ -23,12 +25,16 @@ export default async function BlogSlugPage({
   params: Promise<BlogSlugPageProps>;
 }) {
   const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  const mdxSource = await serialize(post.content);
   const { pages } = await getWebsiteMetrics();
 
   return (
-    <div>
-      <h1>Hello world</h1>
-      <p>This is a sample MDX content for the post with slug: {slug}</p>
-    </div>
+    <PostBySlugView
+      slug={slug}
+      post={post}
+      pages={pages}
+      mdxSource={mdxSource}
+    />
   );
 }
