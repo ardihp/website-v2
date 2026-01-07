@@ -1,9 +1,9 @@
 import ImageKit from "@/components/layouts/components/imagekit";
-import { IconTimeline } from "@tabler/icons-react";
-import Image from "next/image";
+import { IconPointFilled } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 import { PostItemProps } from "../view";
+import dayjs from "dayjs";
 
 interface PostItemsProps {
   post: PostItemProps;
@@ -25,18 +25,25 @@ export default function PostItem({ post, viewCount }: PostItemsProps) {
           <div className="bg-black/30 w-full h-full absolute top-0" />
         </div>
 
-        <div className="flex flex-col gap-2 p-3 w-[calc(100%_-_48px)] absolute bg-primary/5 bottom-6 backdrop-blur-sm border border-primary/10 rounded-[16px]">
-          <p className="font-fredoka text-lg font-medium leading-5 text-pretty line-clamp-2 text-primary">
-            {post.body.title}
-          </p>
-          <p className="font-manrope text-xs font-medium text-pretty line-clamp-2 text-primary/90">
-            {post.body.abstract}
-          </p>
+        <div className="absolute bottom-6 w-[calc(100%_-_48px)] flex flex-col gap-2">
+          <div className="flex flex-col gap-2 p-3 bg-primary/5 backdrop-blur-sm border border-primary/10 rounded-[16px]">
+            <p className="font-fredoka text-lg font-medium leading-5 text-pretty line-clamp-2 text-primary">
+              {post.body.title}
+            </p>
+            <p className="font-manrope text-xs font-medium text-pretty line-clamp-2 text-primary/90">
+              {post.body.abstract}
+            </p>
+          </div>
         </div>
 
-        <div className="absolute flex gap-1 items-center top-6 right-6 bg-primary/5 py-[5px] px-[10px] backdrop-blur-sm border border-primary/10 rounded-[16px]">
-          <IconTimeline size={16} className="text-primary" />
-          <p className="text-xs text-primary/90">{viewCount} views</p>
+        <div className="absolute top-6 right-6 flex gap-1 items-center bg-primary/5 py-[5px] px-[10px] backdrop-blur-sm border border-primary/10 rounded-[16px] w-fit">
+          <p className="text-xs text-primary/90">
+            {dayjs(post.body.publishedOn).format("MMM D, YYYY")}
+          </p>
+          <IconPointFilled size={12} className="text-primary" />
+          <div className="flex gap-1 items-center">
+            <p className="text-xs text-primary/90">{viewCount} views</p>
+          </div>
         </div>
       </div>
     </Link>

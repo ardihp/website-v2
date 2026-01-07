@@ -12,26 +12,36 @@ import dayjs from "dayjs";
 import { IconArrowNarrowUp, IconTimeline } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import DelayedItem from "@/components/layouts/components/delayed-item";
-import ImageKit from "@/components/layouts/components/imagekit";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+
+export interface DetailPostItemProps {
+  body: {
+    title: string;
+    seoTitle: string;
+    abstract: string;
+    thumbnail: string;
+    publishedOn: string;
+    tags: string;
+  };
+  content: any;
+}
 
 interface PostBySlugViewProps {
-  post: any;
-  html: any;
+  slug: string;
+  post: DetailPostItemProps;
   pages: any;
+  mdxSource: MDXRemoteSerializeResult;
 }
 
 export default function PostBySlugView({
+  slug,
   post,
-  html,
   pages,
+  mdxSource,
 }: PostBySlugViewProps) {
   const [showScroll, setShowScroll] = useState(false);
-  const imagePath = post?.cover?.external?.url
-    ?.split("/")?.[3]
-    ?.split("?")?.[0];
-  const pageViews = pages?.find((page: any) =>
-    page?.value?.includes(post?.properties?.slug?.rich_text?.[0]?.plain_text)
-  )?.count;
+  const pageViews =
+    pages?.find((page: any) => page?.value?.includes(slug))?.count || 0;
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -49,90 +59,70 @@ export default function PostBySlugView({
 
   return (
     <>
-      <div className="flex flex-col gap-4 max-w-screen-lg mx-auto w-full px-4 md:px-6 lg:px-[48px]">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <Link
-                href="/"
-                className="dark:text-white text-secondary opacity-50 hover:opacity-80 font-medium duration-200 text-xs md:text-base"
-              >
-                Home
-              </Link>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator>/</BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <Link
-                href="/posts"
-                className="dark:text-white text-secondary opacity-50 hover:opacity-80 font-medium duration-200 text-xs md:text-base"
-              >
-                Posts
-              </Link>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator>/</BreadcrumbSeparator>
-            <BreadcrumbItem className="dark:text-white text-secondary opacity-80 font-medium text-xs md:text-base">
-              {post?.properties?.title?.title?.[0]?.plain_text}
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="flex flex-col gap-4 max-w-screen-xl mx-auto w-full">
+        <div className="flex flex-col gap-4 max-w-screen-lg mx-auto w-full px-4 md:px-6 lg:px-[48px]">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <Link
+                  href="/"
+                  className="dark:text-white text-secondary opacity-50 hover:opacity-80 font-medium duration-200 text-xs md:text-base"
+                >
+                  Home
+                </Link>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <Link
+                  href="/posts"
+                  className="dark:text-white text-secondary opacity-50 hover:opacity-80 font-medium duration-200 text-xs md:text-base"
+                >
+                  Posts
+                </Link>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbItem className="dark:text-white text-secondary opacity-80 font-medium text-xs md:text-base">
+                {post.body.title}
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
-        <DelayedItem start="bottom" end="bottom">
-          <div className="flex flex-col items-center mt-6 md:mt-10">
-            <div className="flex items-center gap-4 mb-3">
-              {post?.properties?.tags?.multi_select?.map(
-                (tag: any, index: number) => (
-                  <div
-                    key={index}
-                    className="shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.02] dark:text-white/70 text-secondary/70 font-medium text-xs md:text-sm py-2 px-3 rounded-full"
-                  >
-                    {tag?.name}
-                  </div>
-                )
-              )}
-            </div>
-            <h1 className="font-[600] text-[34px] md:text-[54px] leading-none text-pretty dark:text-white text-secondary/70 text-center">
-              {post?.properties?.title?.title?.[0]?.plain_text}
-            </h1>
-            <div className="flex items-center gap-3 mt-4 md:mt-6">
-              <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                {dayjs(post?.properties?.created_at?.date?.start).format(
-                  "DD MMMM YYYY"
-                )}
-              </p>
-              <IconTimeline
-                size={18}
-                className="dark:text-white/70 text-secondary/60"
-              />
-              <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                {pageViews ? pageViews + 1 : 0} views
-              </p>
-            </div>
-          </div>
-
-          <article className="flex flex-col mt-6 md:mt-8 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[20px] md:rounded-[32px] pb-6 md:pb-10 relative shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
-            <div className="w-full">
-              <div className="p-4 md:p-6 w-full h-full rounded-[20px] md:rounded-[32px] overflow-hidden">
-                <div className="relative h-[260px] md:h-[430px] w-full rounded-[12px] md:rounded-[18px] overflow-hidden">
-                  <ImageKit
-                    src={imagePath}
-                    alt="Blog Cover Image"
-                    className="object-cover"
-                    sizes="600px"
-                    fill
-                  />
-                </div>
+          <DelayedItem start="bottom" end="bottom">
+            <div className="flex flex-col items-center mt-6 md:mt-10">
+              <div className="flex items-center gap-4 mb-3">
+                {post.body.tags
+                  .split(", ")
+                  ?.map((tag: string, index: number) => (
+                    <div
+                      key={index}
+                      className="shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.02] dark:text-white/70 text-secondary/70 font-medium text-xs md:text-sm py-2 px-3 rounded-full"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+              </div>
+              <h1 className="font-[600] text-[30px] sm:text-[36px] md:text-[54px] leading-none dark:text-white text-secondary/70 text-center text-balance">
+                {post.body.title}
+              </h1>
+              <div className="flex items-center gap-3 mt-4 md:mt-6">
+                <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
+                  {dayjs(post.body.publishedOn).format("DD MMMM YYYY")}
+                </p>
+                <IconTimeline
+                  size={18}
+                  className="dark:text-white/70 text-secondary/60"
+                />
+                <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
+                  {pageViews ? pageViews + 1 : 0} views
+                </p>
               </div>
             </div>
+          </DelayedItem>
+        </div>
 
-            <section className="flex">
-              <div
-                id="article"
-                className="post-page"
-                dangerouslySetInnerHTML={{ __html: html }}
-              />
-            </section>
-          </article>
-        </DelayedItem>
+        {/* <div className="flex flex-col gap-4">
+          <MDXRemote {...mdxSource} lazy={true} />
+        </div> */}
       </div>
 
       <motion.div

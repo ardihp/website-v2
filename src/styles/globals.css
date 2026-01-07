@@ -9,6 +9,7 @@ body {
   background-repeat: repeat;
   background-blend-mode: difference;
   background-size: 100px;
+  scroll-behavior: smooth;
 }
 
 :root {
