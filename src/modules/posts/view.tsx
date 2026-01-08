@@ -70,6 +70,18 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
   }, [selectedTags, keyword]);
 
   useEffect(() => {
+    if (searchParams.get("q")) {
+      setKeyword(searchParams.get("q") || "");
+    }
+
+    if (searchParams.get("tags")) {
+      const tagsParam = searchParams.get("tags") || "";
+      const tagsArray = tagsParam.split(",").map((tag) => tag.trim());
+      setSelectedTags(tagsArray);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
     setAvailableTags(
       Array.from(
         new Set(
@@ -136,6 +148,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
           <div className="flex items-center mb-5 relative">
             <input
               ref={inputRef}
+              value={keyword}
               type="text"
               placeholder="Search post you want to read..."
               className="w-full bg-transparent border border-secondary/10 text-secondary/70 font-medium text-sm px-4 py-3 shadow-inner shadow-secondary/10 rounded-xl outline-none focus-within:ring-[2px] focus-within:ring-secondary/20 focus-within:ring-offset-2 focus-within:ring-offset-primary placeholder:font-medium placeholder:text-secondary/30 duration-200"
