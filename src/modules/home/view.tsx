@@ -1,23 +1,13 @@
 "use client";
 
-import {
-  DatabaseObjectResponse,
-  PageObjectResponse,
-  PartialDatabaseObjectResponse,
-  PartialPageObjectResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 import React from "react";
 import IntroductionSection from "./components/introduction";
 import RecentPostSection from "./components/recent-posts";
 import DelayedItem from "@/components/layouts/components/delayed-item";
+import { PostItemProps } from "../posts/view";
 
 interface HomeViewProps {
-  posts: (
-    | PageObjectResponse
-    | PartialPageObjectResponse
-    | PartialDatabaseObjectResponse
-    | DatabaseObjectResponse
-  )[];
+  posts: PostItemProps[];
   pages: any;
 }
 
