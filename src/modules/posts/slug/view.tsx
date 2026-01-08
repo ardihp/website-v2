@@ -13,6 +13,7 @@ import { IconArrowNarrowUp, IconTimeline } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import DelayedItem from "@/components/layouts/components/delayed-item";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { mdxComponents } from "@/data/mdx-components";
 
 export interface DetailPostItemProps {
   body: {
@@ -59,8 +60,8 @@ export default function PostBySlugView({
 
   return (
     <>
-      <div className="flex flex-col gap-4 max-w-screen-xl mx-auto w-full">
-        <div className="flex flex-col gap-4 max-w-screen-lg mx-auto w-full px-4 md:px-6 lg:px-[48px]">
+      <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4 w-full max-w-screen-lg mx-auto px-4 md:px-6 lg:px-[48px]">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -87,42 +88,63 @@ export default function PostBySlugView({
             </BreadcrumbList>
           </Breadcrumb>
 
-          <DelayedItem start="bottom" end="bottom">
-            <div className="flex flex-col items-center mt-6 md:mt-10">
-              <div className="flex items-center gap-4 mb-3">
-                {post.body.tags
-                  .split(", ")
-                  ?.map((tag: string, index: number) => (
-                    <div
-                      key={index}
-                      className="shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.02] dark:text-white/70 text-secondary/70 font-medium text-xs md:text-sm py-2 px-3 rounded-full"
-                    >
-                      {tag}
-                    </div>
-                  ))}
-              </div>
-              <h1 className="font-[600] text-[30px] sm:text-[36px] md:text-[54px] leading-none dark:text-white text-secondary/70 text-center text-balance">
-                {post.body.title}
-              </h1>
-              <div className="flex items-center gap-3 mt-4 md:mt-6">
-                <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                  {dayjs(post.body.publishedOn).format("DD MMMM YYYY")}
-                </p>
-                <IconTimeline
-                  size={18}
-                  className="dark:text-white/70 text-secondary/60"
-                />
-                <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                  {pageViews ? pageViews + 1 : 0} views
-                </p>
-              </div>
+          <div className="flex flex-col items-center my-6 lg:my-10">
+            <div className="flex items-center gap-4 mb-3">
+              {post.body.tags.split(", ")?.map((tag: string, index: number) => (
+                <div
+                  key={index}
+                  className="shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.02] dark:text-white/70 text-secondary/70 font-medium text-xs md:text-sm py-2 px-3 rounded-full"
+                >
+                  {tag}
+                </div>
+              ))}
             </div>
-          </DelayedItem>
+            <h1 className="font-[600] text-[30px] sm:text-[36px] md:text-[54px] leading-none dark:text-white text-secondary/70 text-center text-balance">
+              {post.body.title}
+            </h1>
+            <div className="flex items-center gap-3 mt-4 md:mt-6">
+              <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
+                {dayjs(post.body.publishedOn).format("DD MMMM YYYY")}
+              </p>
+              <IconTimeline
+                size={18}
+                className="dark:text-white/70 text-secondary/60"
+              />
+              <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
+                {pageViews ? pageViews + 1 : 0} views
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* <div className="flex flex-col gap-4">
-          <MDXRemote {...mdxSource} lazy={true} />
-        </div> */}
+        <hr className="border-secondary/20" />
+
+        <div className="flex gap-10 w-full max-w-screen-lg mx-auto relative lg:pt-6 px-4 md:px-6 lg:px-0 xl:left-[48px]">
+          <div className="w-full">
+            <MDXRemote {...mdxSource} components={mdxComponents} lazy={true} />
+          </div>
+
+          <div className="hidden lg:block w-full max-w-[320px] h-full sticky top-20">
+            <article className="gap-4 mt-6 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[20px] p-6 pt-8 relative shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
+              <div
+                className="absolute top-[-28px] left-[26px] w-fit p-2 px-3 bg-primary dark:bg-[#121212] bg-[url('/bg-noise.png')] bg-blend-exclusion dark:bg-blend-normal"
+                style={{ backgroundSize: "110px" }}
+              >
+                <div className="p-3 rounded-[8px] w-fit h-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.2]">
+                  <p className="shadowed-text text-primary text-[16px] font-[600]">
+                    Table of Content
+                  </p>
+                </div>
+              </div>
+
+              <section className="rounded-[20px] w-fit h-fit dark:bg-zinc-900/40 bg-secondary/[0.01]">
+                <p className="font-medium text-base md:text-lg text-secondary/60 dark:text-white/70 text-pretty">
+                  TBC
+                </p>
+              </section>
+            </article>
+          </div>
+        </div>
       </div>
 
       <motion.div
