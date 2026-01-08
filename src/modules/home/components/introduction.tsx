@@ -33,7 +33,7 @@ export default function IntroductionSection() {
       </section>
 
       <p className="font-medium text-base md:text-lg w-full md:w-[550px] mr-auto text-pretty text-secondary/60 dark:text-white/70">
-        Frontend Developer with over two years of experience in crafting
+        Frontend Developer with over three years of experience in crafting
         responsive and visually appealing websites.
       </p>
     </article>
