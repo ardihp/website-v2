@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import type { WorkExperience } from "@/data/experience";
 import { workExperience } from "@/data/experience";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { IconBriefcaseFilled } from "@tabler/icons-react";
+import { IconBriefcaseFilled, IconChevronDown } from "@tabler/icons-react";
 
 export default function ExperienceSection() {
+  const [isShowMore, setIsShowMore] = useState(false);
+
   return (
     <article className="relative flex flex-col items-center gap-4 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[20px] md:rounded-[32px] shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
       <section
@@ -24,63 +26,77 @@ export default function ExperienceSection() {
         <IconBriefcaseFilled className="size-36 absolute -top-8 -right-8 -rotate-[30deg] text-secondary opacity-5" />
 
         <div className="flex flex-col gap-8 w-full">
-          {workExperience?.map((work: WorkExperience, index: number) => (
-            <div
-              key={work.company}
-              className="flex flex-col md:flex-row gap-3 md:gap-6"
-            >
-              <Link
-                key={index}
-                href={work?.link ? work?.link : "/works"}
-                target={work?.link ? "_blank" : "_self"}
-                className="group flex items-center w-full h-[72px] md:h-[80px] max-w-[72px] md:max-w-[80px] justify-center rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-[#f5f0e2] z-10"
-                passHref
-              >
-                <div className="relative size-[48px] md:size-[56px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
-                  <Image
-                    src={work?.logo}
-                    alt="Company Logo"
-                    fill
-                    sizes="200px"
-                    className="object-cover object-center grayscale group-hover:grayscale-0 duration-300"
-                    priority
-                  />
+          {workExperience?.map(
+            (work: WorkExperience, index: number) =>
+              (isShowMore ? true : index <= 2) && (
+                <div
+                  key={work.company}
+                  className="flex flex-col md:flex-row gap-3 md:gap-6"
+                >
+                  <Link
+                    key={index}
+                    href={work?.link ? work?.link : "/works"}
+                    target={work?.link ? "_blank" : "_self"}
+                    className="group flex items-center w-full h-[72px] md:h-[80px] max-w-[72px] md:max-w-[80px] justify-center rounded-[16px] md:rounded-[20px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-[#f5f0e2] z-10"
+                    passHref
+                  >
+                    <div className="relative size-[48px] md:size-[56px] rounded-[12px] overflow-hidden shadow-lg shadow-secondary/10 dark:shadow-zinc-700">
+                      <Image
+                        src={work?.logo}
+                        alt="Company Logo"
+                        fill
+                        sizes="200px"
+                        className="object-cover object-center grayscale group-hover:grayscale-0 duration-300"
+                        priority
+                      />
+                    </div>
+                  </Link>
+
+                  <div className="flex flex-col md:p-2 w-full">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between">
+                      <p className="font-manrope font-black text-base md:text-md text-secondary/70 dark:text-white">
+                        {work.role}
+                      </p>
+
+                      <p className="font-manrope text-[10px] md:text-xs font-bold text-secondary/50 dark:text-white/70 mb-2 md:mb-0">
+                        {dayjs(work.start_date).format("MMM YYYY")} --{" "}
+                        {work?.end_date
+                          ? dayjs(work?.end_date).format("MMM YYYY")
+                          : "Present"}
+                      </p>
+                    </div>
+                    <p className="font-manrope text-xs font-bold text-secondary/40 dark:text-white/70 mt-0.5">
+                      {work.company} -- {work.location}, {work.work_type}
+                    </p>
+                    <p className="font-manrope text-xs font-bold mt-1 md:mt-3 text-secondary/40 dark:text-white/70 text-pretty">
+                      {work.description}
+                    </p>
+
+                    <ul className="list-disc pl-5">
+                      {work.job_list.map((job, jobIdx) => (
+                        <li
+                          key={jobIdx}
+                          className="font-manrope text-[10px] md:text-xs font-bold mt-1 md:mt-3 text-secondary/40 dark:text-white/70 text-pretty"
+                        >
+                          {job}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </Link>
+              )
+          )}
 
-              <div className="flex flex-col md:p-2 w-full">
-                <div className="flex flex-col md:flex-row md:items-center justify-between">
-                  <p className="font-manrope font-black text-base md:text-md text-secondary/70 dark:text-white">
-                    {work.role}
-                  </p>
-
-                  <p className="font-manrope text-[10px] md:text-xs font-bold text-secondary/50 dark:text-white/70 mb-2 md:mb-0">
-                    {dayjs(work.start_date).format("MMM YYYY")} --{" "}
-                    {work?.end_date
-                      ? dayjs(work?.end_date).format("MMM YYYY")
-                      : "Present"}
-                  </p>
-                </div>
-                <p className="font-manrope text-xs font-bold text-secondary/50 dark:text-white/90 mt-0.5">
-                  {work.company} -- {work.location}, {work.work_type}
-                </p>
-                <p className="font-manrope text-[10px] md:text-xs font-bold mt-1 md:mt-3 text-secondary/40 dark:text-white/70 text-pretty">
-                  {work.description}
-                </p>
-
-                <ul className="list-disc pl-5">
-                  {work.job_list.map((job, jobIdx) => (
-                    <li
-                      key={jobIdx}
-                      className="font-manrope text-[10px] md:text-xs font-bold mt-1 md:mt-3 text-secondary/40 dark:text-white/70 text-pretty"
-                    >
-                      {job}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+          <div
+            className="flex items-center justify-center gap-3 w-full cursor-pointer"
+            onClick={() => setIsShowMore(!isShowMore)}
+          >
+            <div className="h-[1px] w-full border border-dashed border-secondary/20 rounded-full" />
+            <p className="font-manrope text-xs font-black text-secondary/70 divide-x-2 w-fit text-nowrap">
+              {isShowMore ? "Show Less" : "Show More"}
+            </p>
+            <div className="h-[1px] w-full border border-dashed border-secondary/20 rounded-full" />
+          </div>
         </div>
       </section>
     </article>
