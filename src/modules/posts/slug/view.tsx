@@ -13,7 +13,10 @@ import { IconArrowNarrowUp, IconTimeline } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import DelayedItem from "@/components/layouts/components/delayed-item";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { mdxComponents } from "@/data/mdx-components";
+import { getAnchor, mdxComponents } from "@/data/mdx-components";
+import { useScrollspy } from "@/hooks/use-scrollspy";
+import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
 
 export interface DetailPostItemProps {
   body: {
@@ -41,22 +44,43 @@ export default function PostBySlugView({
   mdxSource,
 }: PostBySlugViewProps) {
   const [showScroll, setShowScroll] = useState(false);
+  const [spyProps, setSpyProps] = useState({ elements: [], options: {} });
+  const [currentActive] = useScrollspy(spyProps.elements, spyProps.options);
+  const router = useRouter();
+  const pathname = usePathname();
+
   const pageViews =
     pages?.find((page: any) => page?.value?.includes(slug))?.count || 0;
+  const tableContents =
+    post.content.split("\n").filter((line: string) => line.startsWith("#")) ||
+    [];
+
+  const handleScroll = () => {
+    if (scrollY >= 250) {
+      setShowScroll(true);
+    } else {
+      setShowScroll(false);
+    }
+
+    setSpyProps({
+      elements: tableContents.map((_: any, key: number) =>
+        document.querySelector(`div[id=section-${key + 1}]`)
+      ),
+      options: { offset: 320 },
+    });
+  };
 
   useEffect(() => {
-    document.addEventListener("scroll", () => {
-      if (scrollY >= 250) {
-        setShowScroll(true);
-      } else {
-        setShowScroll(false);
-      }
-    });
+    document.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener("scroll", () => {});
+      document.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleTOCClick = (content: string, key: number) => {
+    router.push(`${pathname}#${getAnchor(content)}`);
+  };
 
   return (
     <>
@@ -117,10 +141,8 @@ export default function PostBySlugView({
           </div>
         </div>
 
-        <hr className="border-secondary/20" />
-
         <div className="flex gap-10 w-full max-w-screen-lg mx-auto relative lg:pt-6 px-4 md:px-6 lg:px-0 xl:left-[48px]">
-          <div className="w-full">
+          <div className="w-full" id="main-content">
             <MDXRemote {...mdxSource} components={mdxComponents} lazy={true} />
           </div>
 
@@ -132,15 +154,29 @@ export default function PostBySlugView({
               >
                 <div className="p-3 rounded-[8px] w-fit h-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.2]">
                   <p className="shadowed-text text-primary text-[16px] font-[600]">
-                    Table of Content
+                    On This Page
                   </p>
                 </div>
               </div>
 
-              <section className="rounded-[20px] w-fit h-fit dark:bg-zinc-900/40 bg-secondary/[0.01]">
-                <p className="font-medium text-base md:text-lg text-secondary/60 dark:text-white/70 text-pretty">
-                  TBC
-                </p>
+              <section className="rounded-[20px] w-fit h-fit dark:bg-zinc-900/40 bg-secondary/[0.01] flex flex-col gap-3">
+                {tableContents.map((content: string, key: number) => (
+                  <p
+                    key={key}
+                    className={cn(
+                      "font-manrope font-bold text-sm text-secondary/20 dark:text-white/70 text-pretty duration-200 cursor-pointer hover:text-secondary/70",
+                      currentActive === key && "text-secondary/70"
+                    )}
+                    onClick={() =>
+                      handleTOCClick(
+                        content.replaceAll("#", "").trimStart(),
+                        key
+                      )
+                    }
+                  >
+                    {content.replaceAll("#", "").trimStart()}
+                  </p>
+                ))}
               </section>
             </article>
           </div>
