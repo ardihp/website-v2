@@ -66,7 +66,7 @@ export default function PostBySlugView({
       elements: tableContents.map((_: any, key: number) =>
         document.querySelector(`div[id=section-${key + 1}]`)
       ),
-      options: { offset: 320 },
+      options: { offset: 160 },
     });
   };
 

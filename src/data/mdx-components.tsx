@@ -49,4 +49,11 @@ export const mdxComponents = {
   img: (props: any) => (
     <img {...props} className="object-cover object-center" />
   ),
+  blockquote: (props: any) => (
+    <blockquote
+      {...props}
+      className="border-l-[3px] pl-5 border-secondary/40"
+    />
+  ),
+  hr: (props: any) => <hr {...props} className="border-secondary/20" />,
 };
