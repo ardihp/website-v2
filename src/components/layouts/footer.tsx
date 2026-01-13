@@ -10,10 +10,13 @@ import {
   IconBrandVercel,
 } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function FooterSection() {
   const { setTheme, theme } = useTheme();
   const [currentTheme, setCurrentTheme] = useState<string | undefined>("");
+  const pathname = usePathname();
 
   useEffect(() => {
     setCurrentTheme(theme);
@@ -21,7 +24,14 @@ export default function FooterSection() {
 
   return (
     <footer className="w-full max-w-screen-lg mx-auto">
-      <article className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between px-4 sm:px-8 lg:px-12 py-6 md:py-10">
+      <article
+        className={cn(
+          "flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between py-6 md:py-10",
+          pathname.includes("/posts/")
+            ? "px-4 md:px-6 xl:px-0"
+            : "px-4 md:px-8 xl:px-12"
+        )}
+      >
         <section className="flex w-fit sm:w-auto items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
           <p className="text-xs font-medium opacity-50">Made by</p>
           <div className="flex items-center gap-1 p-[5px] pr-[8px] rounded-full shadow-inner shadow-secondary/15 dark:shadow-zinc-700/80 dark:bg-zinc-800/50">

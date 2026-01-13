@@ -17,6 +17,8 @@ import { getAnchor, mdxComponents } from "@/data/mdx-components";
 import { useScrollspy } from "@/hooks/use-scrollspy";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
+import ImageKit from "@/components/layouts/components/imagekit";
+import readTime from "@/lib/read-time";
 
 export interface DetailPostItemProps {
   body: {
@@ -55,6 +57,8 @@ export default function PostBySlugView({
     post.content.split("\n").filter((line: string) => line.startsWith("#")) ||
     [];
 
+  const readingTime = readTime(mdxSource.compiledSource) || 0;
+
   const handleScroll = () => {
     if (scrollY >= 250) {
       setShowScroll(true);
@@ -78,14 +82,14 @@ export default function PostBySlugView({
     };
   }, []);
 
-  const handleTOCClick = (content: string, key: number) => {
+  const handleTOCClick = (content: string) => {
     router.push(`${pathname}#${getAnchor(content)}`);
   };
 
   return (
     <>
-      <div className="flex flex-col gap-4 w-full">
-        <div className="flex flex-col gap-4 w-full max-w-screen-lg mx-auto px-4 md:px-6 lg:px-[48px]">
+      <div className="flex flex-col gap-4 w-full max-w-screen-lg mx-auto relative px-4 md:px-6 xl:px-0">
+        <div className="flex flex-col gap-4 w-full">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -112,7 +116,7 @@ export default function PostBySlugView({
             </BreadcrumbList>
           </Breadcrumb>
 
-          <div className="flex flex-col items-center my-6 lg:my-10">
+          <div className="flex flex-col mt-4">
             <div className="flex items-center gap-4 mb-3">
               {post.body.tags.split(", ")?.map((tag: string, index: number) => (
                 <div
@@ -123,25 +127,67 @@ export default function PostBySlugView({
                 </div>
               ))}
             </div>
-            <h1 className="font-[600] text-[30px] sm:text-[36px] md:text-[54px] leading-none dark:text-white text-secondary/70 text-center text-balance">
-              {post.body.title}
-            </h1>
-            <div className="flex items-center gap-3 mt-4 md:mt-6">
-              <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                {dayjs(post.body.publishedOn).format("DD MMMM YYYY")}
+            <div className="flex flex-col gap-2">
+              <h1 className="font-[600] text-[30px] sm:text-[36px] md:text-[48px] leading-none dark:text-white text-secondary/70 text-balance">
+                {post.body.title}
+              </h1>
+              <p className="font-manrope font-bold text-secondary/50">
+                {post.body.abstract}
               </p>
-              <IconTimeline
-                size={18}
-                className="dark:text-white/70 text-secondary/60"
+            </div>
+            <div className="relative h-[280px] md:h-[440px] w-full rounded-lg overflow-hidden my-6">
+              <ImageKit
+                src={post.body.thumbnail}
+                alt="Blog Thumbnail Image"
+                className="object-cover object-center w-full"
+                sizes="1280px"
+                fill
               />
-              <p className="font-manrope text-xs md:text-sm font-bold dark:text-white/70 text-secondary/60">
-                {pageViews ? pageViews + 1 : 0} views
-              </p>
+              <div className="bg-black/30 w-full h-full absolute top-0" />
+            </div>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+              <div className="flex flex-col gap-[2px]">
+                <p className="text-secondary/50 font-medium text-xs">Author</p>
+
+                <p className="font-manrope text-sm font-black dark:text-white/70 text-secondary/70">
+                  Ardiansyah Halim Putra
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-[2px]">
+                <p className="text-secondary/50 font-medium text-xs">
+                  Posted On
+                </p>
+
+                <p className="font-manrope text-sm font-black dark:text-white/70 text-secondary/70">
+                  {dayjs(post.body.publishedOn).format("DD MMMM, YYYY")}
+                </p>
+              </div>
+
+              <div className="flex flex-col md:items-end gap-[2px] md:ml-auto">
+                <p className="text-secondary/50 font-medium text-xs">
+                  Page View
+                </p>
+
+                <p className="font-manrope text-sm font-black dark:text-white/70 text-secondary/70">
+                  {pageViews} view{pageViews > 1 && "s"}
+                </p>
+              </div>
+
+              <div className="flex flex-col md:items-end gap-[2px]">
+                <p className="text-secondary/50 font-medium text-xs">
+                  Reading Time
+                </p>
+
+                <p className="font-manrope text-sm font-black dark:text-white/70 text-secondary/70">
+                  {readingTime} min{readingTime > 1 && "s"}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="flex gap-10 w-full max-w-screen-lg mx-auto relative lg:pt-6 px-4 md:px-6 lg:px-0 xl:left-[48px]">
+        <div className="flex gap-10 w-full mt-6 md:mt-12">
           <div className="w-full" id="main-content">
             <MDXRemote {...mdxSource} components={mdxComponents} lazy={true} />
           </div>
@@ -168,10 +214,7 @@ export default function PostBySlugView({
                       currentActive === key && "text-secondary/70"
                     )}
                     onClick={() =>
-                      handleTOCClick(
-                        content.replaceAll("#", "").trimStart(),
-                        key
-                      )
+                      handleTOCClick(content.replaceAll("#", "").trimStart())
                     }
                   >
                     {content.replaceAll("#", "").trimStart()}

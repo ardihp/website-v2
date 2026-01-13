@@ -25,7 +25,7 @@ export const mdxComponents = {
         <h2
           {...props}
           id={anchor}
-          className="text-lg md:text-xl font-semibold text-secondary/70 dark:text-white my-5 text-pretty leading-[1.4rem] md:leading-[1.6rem] scroll-mt-20 first:mt-0 hover:underline underline-offset-2"
+          className="text-lg md:text-xl font-semibold text-secondary/70 dark:text-white text-pretty leading-[1.4rem] md:leading-[1.6rem] my-5 scroll-mt-20 hover:underline underline-offset-2"
         />
       </Link>
     );
