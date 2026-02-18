@@ -14,7 +14,7 @@ export default function NavbarItem({ href, text, ...rest }: NavbarItemProps) {
 
   return (
     <Link
-      href={href}
+      href={pathname.match(href) ? "" : href}
       {...rest}
       className={`${
         pathname.match(href)
