@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 
 interface PostItemsProps {
   post: PostItemProps;
-  viewCount: number;
+  viewCount: number | boolean;
 }
 
 export default function PostItem({ post, viewCount }: PostItemsProps) {
@@ -53,7 +53,7 @@ export default function PostItem({ post, viewCount }: PostItemsProps) {
           </p>
           <IconPointFilled size={12} className="text-primary" />
           <div className="flex gap-1 items-center">
-            <p className="text-xs text-primary/90">{viewCount} views</p>
+            <p className="text-xs text-primary/90">{viewCount || "--"} views</p>
           </div>
         </div>
       </div>

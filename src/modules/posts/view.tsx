@@ -12,7 +12,10 @@ import PostItem from "./components/post-item";
 import DelayedItem from "@/components/layouts/components/delayed-item";
 import { cn } from "@/lib/utils";
 import { useKeyPress } from "@/hooks/use-keypress";
+import { useDebounce } from "@/hooks/use-debounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { getWebsiteMetrics } from "@/hooks/use-umami";
+import { IconLoader } from "@tabler/icons-react";
 
 export interface PostItemProps {
   slug: string;
@@ -28,34 +31,39 @@ export interface PostItemProps {
 
 interface PostsViewProps {
   posts: PostItemProps[];
-  pages: any;
 }
 
-export default function PostsView({ posts, pages }: PostsViewProps) {
+export default function PostsView({ posts }: PostsViewProps) {
   const [allTags] = useState<string[]>(
     Array.from(
       new Set(
         posts
           .map((post) => post.body.tags.split(",").map((tag) => tag.trim()))
           .flat()
-          .filter((tag) => tag !== "")
-      )
-    )
+          .filter((tag) => tag !== ""),
+      ),
+    ),
   );
   const [keyword, setKeyword] = useState<string>("");
+  const debouncedKeyword = useDebounce(keyword, 1000);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
   const [inputFocused, setInputFocused] = useState<boolean>(false);
+  const [pages, setPages] = useState<{ value: string; count: number }[]>([]);
+  const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const filteredPosts = useMemo(() => {
+    let filterQuery = firstLoad ? keyword : debouncedKeyword;
+
     return posts.filter((post) => {
       if (
-        keyword &&
-        !post.body.title.toLowerCase().includes(keyword.toLowerCase())
+        filterQuery &&
+        !post.body.title.toLowerCase().includes(filterQuery.toLowerCase())
       ) {
         return false;
       }
@@ -67,7 +75,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
 
       return true;
     });
-  }, [selectedTags, keyword]);
+  }, [selectedTags, debouncedKeyword, keyword, firstLoad]);
 
   useEffect(() => {
     if (searchParams.get("q")) {
@@ -82,15 +90,24 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
   }, [searchParams]);
 
   useEffect(() => {
+    const fetchPageView = async () => {
+      const { pages } = await getWebsiteMetrics();
+      setPages(pages);
+    };
+
+    fetchPageView();
+  }, []);
+
+  useEffect(() => {
     setAvailableTags(
       Array.from(
         new Set(
           filteredPosts
             .map((post) => post.body.tags.split(",").map((tag) => tag.trim()))
             .flat()
-            .filter((tag) => tag !== "")
-        )
-      )
+            .filter((tag) => tag !== ""),
+        ),
+      ),
     );
   }, [filteredPosts]);
 
@@ -104,10 +121,11 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
       params.set(name, value);
+      setLoadingSearch(false);
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const handleSelectTag = (tag: string) => {
@@ -122,7 +140,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
     }
 
     router.replace(
-      `${pathname}?${createQueryString("tags", newTags.join(","))}`
+      `${pathname}?${createQueryString("tags", newTags.join(","))}`,
     );
     setSelectedTags(newTags);
   };
@@ -138,8 +156,18 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
 
   const handleDelayedInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
-    router.replace(`${pathname}?${createQueryString("q", e.target.value)}`);
+    setLoadingSearch(true);
+
+    if (debouncedKeyword === "" && e.target.value === "") {
+      setLoadingSearch(false);
+    }
   };
+
+  useEffect(() => {
+    if (debouncedKeyword) setFirstLoad(false);
+
+    router.replace(`${pathname}?${createQueryString("q", debouncedKeyword)}`);
+  }, [debouncedKeyword, pathname, router, createQueryString]);
 
   return (
     <DelayedItem start="bottom" end="bottom">
@@ -151,22 +179,31 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
               value={keyword}
               type="text"
               placeholder="Search post you want to read..."
-              className="w-full bg-transparent border border-secondary/10 text-secondary/70 font-medium text-sm px-4 py-3 shadow-inner shadow-secondary/10 rounded-xl outline-none focus-within:ring-[2px] focus-within:ring-secondary/20 focus-within:ring-offset-2 focus-within:ring-offset-primary placeholder:font-medium placeholder:text-secondary/30 duration-200"
+              className={cn(
+                "w-full bg-transparent border border-secondary/10 text-secondary/70 font-medium text-sm py-3 shadow-inner shadow-secondary/10 rounded-xl outline-none focus-within:ring-[2px] focus-within:ring-secondary/20 focus-within:ring-offset-2 focus-within:ring-offset-primary placeholder:font-medium placeholder:text-secondary/30 duration-200",
+                loadingSearch ? "pl-4 pr-12" : "px-4",
+              )}
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
               onChange={handleDelayedInput}
             />
 
-            <div
-              className={cn(
-                "absolute right-3 bg-secondary/10 px-2 py-1 rounded-md duration-200 pointer-events-none",
-                inputFocused ? "opacity-0" : "opacity-100"
-              )}
-            >
-              <p className="text-[10px] font-manrope font-black text-secondary/70">
-                Ctrl + K
-              </p>
-            </div>
+            {loadingSearch ? (
+              <div className={cn("absolute right-3 px-1 py-1 duration-200")}>
+                <IconLoader className="size-4 text-secondary/70 animate-spin" />
+              </div>
+            ) : (
+              <div
+                className={cn(
+                  "absolute right-3 px-2 py-1 bg-secondary/10 rounded-md pointer-events-none",
+                  inputFocused ? "opacity-0" : "opacity-100",
+                )}
+              >
+                <p className="text-[10px] font-manrope font-black text-secondary/70">
+                  Ctrl + K
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -185,7 +222,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
                       : "bg-transparent",
                     !availableTags.includes(tag) &&
                       !selectedTags.includes(tag) &&
-                      "cursor-not-allowed opacity-50"
+                      "cursor-not-allowed opacity-50",
                   )}
                   onClick={() => handleSelectTag(tag)}
                 >
@@ -194,7 +231,7 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
                       "font-manrope font-black text-xs duration-200",
                       selectedTags.includes(tag)
                         ? "text-white"
-                        : "text-secondary/70"
+                        : "text-secondary/70",
                     )}
                   >
                     {tag}
@@ -205,29 +242,27 @@ export default function PostsView({ posts, pages }: PostsViewProps) {
           </div>
         </HeaderPage>
 
-        <div>
-          {filteredPosts.length === 0 ? (
-            <div className="flex flex-col items-center justify-center">
-              <p>Whooops, no post found.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 h-full">
-              {filteredPosts
-                .sort(
-                  (a, b) =>
-                    new Date(b.body.publishedOn).getTime() -
-                    new Date(a.body.publishedOn).getTime()
-                )
-                .map((post: PostItemProps, index: number) => (
-                  <PostItem
-                    key={index}
-                    post={post}
-                    viewCount={pageViews(post)}
-                  />
-                ))}
-            </div>
-          )}
-        </div>
+        {filteredPosts.length === 0 ? (
+          <div className="flex flex-col items-center justify-center">
+            <p>Whooops, no post found.</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 h-full">
+            {filteredPosts
+              .sort(
+                (a, b) =>
+                  new Date(b.body.publishedOn).getTime() -
+                  new Date(a.body.publishedOn).getTime(),
+              )
+              .map((post: PostItemProps, index: number) => (
+                <PostItem
+                  key={index}
+                  post={post}
+                  viewCount={pages.length >= 1 ? pageViews(post) : false}
+                />
+              ))}
+          </div>
+        )}
       </div>
     </DelayedItem>
   );
