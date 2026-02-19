@@ -91,6 +91,8 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
   }, []);
 
   useEffect(() => {
+    setPages(JSON.parse(localStorage.getItem("pageViews") || "[]"));
+
     const fetchPageView = async () => {
       const { pages } = await getWebsiteMetrics();
       setPages(pages);
