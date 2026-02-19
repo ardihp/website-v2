@@ -96,6 +96,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
     const fetchPageView = async () => {
       const { pages } = await getWebsiteMetrics();
       setPages(pages);
+      localStorage.setItem("pageViews", JSON.stringify(pages));
     };
 
     fetchPageView();
