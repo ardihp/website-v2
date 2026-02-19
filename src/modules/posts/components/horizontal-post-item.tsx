@@ -11,7 +11,7 @@ import { PostItemProps } from "../view";
 
 interface HorizontalPostItemProps {
   post: PostItemProps;
-  viewCount: number;
+  viewCount: number | boolean;
 }
 
 export default function HorizontalPostItem({
@@ -31,7 +31,7 @@ export default function HorizontalPostItem({
               className="text-secondary/40 dark:text-white"
             />
             <p className="text-xs font-medium text-secondary/40 dark:text-white/70">
-              {viewCount} views
+              {viewCount || "--"} views
             </p>
           </div>
 

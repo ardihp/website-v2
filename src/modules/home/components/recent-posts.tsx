@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HorizontalPostItem from "@/modules/posts/components/horizontal-post-item";
 import Link from "next/link";
 import { PostItemProps } from "@/modules/posts/view";
+import { getWebsiteMetrics } from "@/hooks/use-umami";
 
 interface RecentPostSectionProps {
   posts: PostItemProps[];
-  pages: any;
 }
 
-export default function RecentPostSection({
-  posts,
-  pages,
-}: RecentPostSectionProps) {
+export default function RecentPostSection({ posts }: RecentPostSectionProps) {
+  const [pages, setPages] = useState<{ value: string; count: number }[]>([]);
+
   const pageView = (post: PostItemProps) => {
     return (
       pages?.find((page: any) => page?.value?.includes(post.slug))?.count || 0
     );
   };
+
+  useEffect(() => {
+    setPages(JSON.parse(localStorage.getItem("pageViews") || "[]"));
+
+    const fetchPageView = async () => {
+      const { pages } = await getWebsiteMetrics();
+      setPages(pages);
+      localStorage.setItem("pageViews", JSON.stringify(pages));
+    };
+
+    fetchPageView();
+  }, []);
 
   return (
     <article className="flex flex-col items-center gap-4 border-2 border-dashed border-secondary/20 dark:border-zinc-700/60 rounded-[20px] md:rounded-[32px] p-6 pt-10 md:p-10 md:pt-14 lg:p-16 relative shadow-inner dark:shadow-none shadow-secondary/10 dark:shadow-zinc-700">
@@ -44,9 +55,9 @@ export default function RecentPostSection({
               <HorizontalPostItem
                 key={index}
                 post={post}
-                viewCount={pageView(post)}
+                viewCount={pages.length >= 1 ? pageView(post) : false}
               />
-            )
+            ),
         )}
       </div>
     </article>
