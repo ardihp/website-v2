@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import ImageKit from "@/components/layouts/components/imagekit";
 import readTime from "@/lib/read-time";
+import { getWebsiteMetrics } from "@/hooks/use-umami";
 
 export interface DetailPostItemProps {
   body: {
@@ -35,19 +36,18 @@ export interface DetailPostItemProps {
 interface PostBySlugViewProps {
   slug: string;
   post: DetailPostItemProps;
-  pages: any;
   mdxSource: MDXRemoteSerializeResult;
 }
 
 export default function PostBySlugView({
   slug,
   post,
-  pages,
   mdxSource,
 }: PostBySlugViewProps) {
   const [showScroll, setShowScroll] = useState(false);
   const [spyProps, setSpyProps] = useState({ elements: [], options: {} });
   const [currentActive] = useScrollspy(spyProps.elements, spyProps.options);
+  const [pages, setPages] = useState<{ value: string; count: number }[]>([]);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -68,7 +68,7 @@ export default function PostBySlugView({
 
     setSpyProps({
       elements: tableContents.map((_: any, key: number) =>
-        document.querySelector(`div[id=section-${key + 1}]`)
+        document.querySelector(`div[id=section-${key + 1}]`),
       ),
       options: { offset: 160 },
     });
@@ -80,6 +80,18 @@ export default function PostBySlugView({
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    setPages(JSON.parse(localStorage.getItem("pageViews") || "[]"));
+
+    const fetchPageView = async () => {
+      const { pages } = await getWebsiteMetrics();
+      setPages(pages);
+      localStorage.setItem("pageViews", JSON.stringify(pages));
+    };
+
+    fetchPageView();
   }, []);
 
   const handleTOCClick = (content: string) => {
@@ -211,7 +223,7 @@ export default function PostBySlugView({
                     key={key}
                     className={cn(
                       "font-manrope font-bold text-sm text-secondary/20 dark:text-white/70 text-pretty duration-200 cursor-pointer hover:text-secondary/70",
-                      currentActive === key && "text-secondary/70"
+                      currentActive === key && "text-secondary/70",
                     )}
                     onClick={() =>
                       handleTOCClick(content.replaceAll("#", "").trimStart())

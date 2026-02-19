@@ -1,5 +1,4 @@
 import React from "react";
-import { getWebsiteMetrics } from "@/hooks/use-umami";
 import { getPostBySlug, getPosts } from "@/lib/posts";
 import { PostItemProps } from "@/modules/posts/view";
 import PostBySlugView from "@/modules/posts/slug/view";
@@ -27,14 +26,6 @@ export default async function BlogSlugPage({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   const mdxSource = await serialize(post.content);
-  const { pages } = await getWebsiteMetrics();
 
-  return (
-    <PostBySlugView
-      slug={slug}
-      post={post}
-      pages={pages}
-      mdxSource={mdxSource}
-    />
-  );
+  return <PostBySlugView slug={slug} post={post} mdxSource={mdxSource} />;
 }
