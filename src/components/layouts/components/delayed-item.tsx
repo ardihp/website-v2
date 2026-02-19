@@ -6,8 +6,8 @@ import { useInView, motion } from "framer-motion";
 interface DelayedItemProps {
   children: ReactNode;
   delay?: number;
-  start: string;
-  end: string;
+  start: "top" | "left" | "right" | "bottom";
+  end: "top" | "left" | "right" | "bottom";
   classes?: string;
 }
 
