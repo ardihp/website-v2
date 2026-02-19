@@ -8,8 +8,13 @@ export const metadata: Metadata = {
   description: "Page for list of post like on Medium.",
 };
 
-export default async function PostsPage() {
+export default async function PostsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
   const posts = await getPosts();
+  const searchQuery = await searchParams;
 
-  return <PostsView posts={posts} />;
+  return <PostsView posts={posts} searchQuery={searchQuery} />;
 }

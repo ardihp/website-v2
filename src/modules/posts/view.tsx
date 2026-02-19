@@ -13,9 +13,10 @@ import DelayedItem from "@/components/layouts/components/delayed-item";
 import { cn } from "@/lib/utils";
 import { useKeyPress } from "@/hooks/use-keypress";
 import { useDebounce } from "@/hooks/use-debounce";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
 import { IconLoader } from "@tabler/icons-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface PostItemProps {
   slug: string;
@@ -31,9 +32,10 @@ export interface PostItemProps {
 
 interface PostsViewProps {
   posts: PostItemProps[];
+  searchQuery: { [key: string]: string | undefined };
 }
 
-export default function PostsView({ posts }: PostsViewProps) {
+export default function PostsView({ posts, searchQuery }: PostsViewProps) {
   const [allTags] = useState<string[]>(
     Array.from(
       new Set(
@@ -55,7 +57,6 @@ export default function PostsView({ posts }: PostsViewProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const filteredPosts = useMemo(() => {
     let filterQuery = firstLoad ? keyword : debouncedKeyword;
@@ -78,16 +79,16 @@ export default function PostsView({ posts }: PostsViewProps) {
   }, [selectedTags, debouncedKeyword, keyword, firstLoad]);
 
   useEffect(() => {
-    if (searchParams.get("q")) {
-      setKeyword(searchParams.get("q") || "");
+    if (Object.hasOwn(searchQuery, "q")) {
+      setKeyword(searchQuery["q"] || "");
     }
 
-    if (searchParams.get("tags")) {
-      const tagsParam = searchParams.get("tags") || "";
+    if (Object.hasOwn(searchQuery, "tags")) {
+      const tagsParam = searchQuery["tags"] || "";
       const tagsArray = tagsParam.split(",").map((tag) => tag.trim());
       setSelectedTags(tagsArray);
     }
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
     const fetchPageView = async () => {
@@ -119,13 +120,15 @@ export default function PostsView({ posts }: PostsViewProps) {
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const currentParams = window.location.href.split("?")[1];
+
+      const params = new URLSearchParams(currentParams);
       params.set(name, value);
       setLoadingSearch(false);
 
       return params.toString();
     },
-    [searchParams],
+    [searchQuery],
   );
 
   const handleSelectTag = (tag: string) => {
@@ -167,7 +170,7 @@ export default function PostsView({ posts }: PostsViewProps) {
     if (debouncedKeyword) setFirstLoad(false);
 
     router.replace(`${pathname}?${createQueryString("q", debouncedKeyword)}`);
-  }, [debouncedKeyword, pathname, router, createQueryString]);
+  }, [debouncedKeyword, pathname, router]);
 
   return (
     <DelayedItem start="bottom" end="bottom">
@@ -242,7 +245,13 @@ export default function PostsView({ posts }: PostsViewProps) {
           </div>
         </HeaderPage>
 
-        {filteredPosts.length === 0 ? (
+        {loadingSearch ? (
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 h-full">
+            {[...new Array(5)].map((_, key) => (
+              <Skeleton key={key} className="w-full h-[332px] rounded-[32px]" />
+            ))}
+          </div>
+        ) : filteredPosts.length === 0 ? (
           <div className="flex flex-col items-center justify-center">
             <p>Whooops, no post found.</p>
           </div>
@@ -255,11 +264,18 @@ export default function PostsView({ posts }: PostsViewProps) {
                   new Date(a.body.publishedOn).getTime(),
               )
               .map((post: PostItemProps, index: number) => (
-                <PostItem
+                <DelayedItem
                   key={index}
-                  post={post}
-                  viewCount={pages.length >= 1 ? pageViews(post) : false}
-                />
+                  start="bottom"
+                  end="top"
+                  delay={Math.min(index * 0.08, 0.2)}
+                >
+                  <PostItem
+                    key={index}
+                    post={post}
+                    viewCount={pages.length >= 1 ? pageViews(post) : false}
+                  />
+                </DelayedItem>
               ))}
           </div>
         )}
