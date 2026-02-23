@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarItem from "./components/navbar-item";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -27,6 +27,10 @@ const menuItems = [
 export default function NavbarSection() {
   const pathname = usePathname();
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
+
+  useEffect(() => {
+    setOpenDrawer(false);
+  }, [pathname]);
 
   return (
     <>
@@ -87,15 +91,19 @@ export default function NavbarSection() {
             </DrawerClose>
           </div>
 
-          <div className="flex flex-col gap-6 px-5">
+          <div className="flex flex-col gap-10 px-5 py-5">
             {menuItems.map((item, key) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-start"
+                className="flex items-start group"
               >
-                <p className="text-5xl font-medium">{item.label}</p>
-                <span className="text-sm text-secondary">0{key + 1}</span>
+                <p className="text-5xl font-semibold group-focus:underline group-active:underline underline-offset-8">
+                  {item.label}
+                </p>
+                <span className="text-sm text-secondary font-semibold font-manrope">
+                  0{key + 1}
+                </span>
               </Link>
             ))}
           </div>
