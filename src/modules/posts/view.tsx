@@ -15,7 +15,7 @@ import { useKeyPress } from "@/hooks/use-keypress";
 import { useDebounce } from "@/hooks/use-debounce";
 import { usePathname, useRouter } from "next/navigation";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
-import { IconLoader } from "@tabler/icons-react";
+import { IconBook2, IconLoader } from "@tabler/icons-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export interface PostItemProps {
@@ -175,6 +175,11 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
     router.replace(`${pathname}?${createQueryString("q", debouncedKeyword)}`);
   }, [debouncedKeyword, pathname, router]);
 
+  const handleClearSearch = () => {
+    setLoadingSearch(true);
+    setKeyword("");
+  };
+
   return (
     <DelayedItem start="bottom" end="bottom">
       <div className="flex flex-col max-w-screen-lg mx-auto w-full gap-8 lg:gap-12 px-4 md:px-8 lg:px-[48px]">
@@ -255,8 +260,26 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
             ))}
           </div>
         ) : filteredPosts.length === 0 ? (
-          <div className="flex flex-col items-center justify-center">
-            <p>Whooops, no post found.</p>
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div className="size-9 flex items-center justify-center rounded-md bg-secondary/10">
+              <IconBook2 className="text-secondary/80" />
+            </div>
+
+            <div className="gap-1.5 flex flex-col items-center">
+              <p className="font-semibold text-secondary/70 leading-none">
+                No posts found
+              </p>
+              <p className="text-xs font-semibold font-manrope text-secondary/60">
+                Your search "{debouncedKeyword}" did not match any posts.
+              </p>
+            </div>
+
+            <button
+              className="font-bold cursor-pointer font-manrope text-xs py-1.5 px-3 rounded-lg bg-secondary/10 border border-secondary/15 text-secondary/80"
+              onClick={handleClearSearch}
+            >
+              Clear search
+            </button>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 h-full">
