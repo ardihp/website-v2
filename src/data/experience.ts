@@ -1,4 +1,4 @@
-export interface WorkExperience {
+interface WorkInformation {
   logo: string;
   company: string;
   role: string;
@@ -7,8 +7,12 @@ export interface WorkExperience {
   location: String;
   work_type: String;
   description: string;
-  job_list: string[];
+}
+
+export interface WorkExperience extends WorkInformation {
+  job_list?: string[];
   link?: string;
+  transfer?: WorkInformation;
 }
 
 export const workExperience: WorkExperience[] = [
@@ -33,11 +37,11 @@ export const workExperience: WorkExperience[] = [
     company: "PT. Steradian Data Optima",
     role: "Frontend Developer",
     start_date: "2025-07-27",
-    end_date: null,
+    end_date: "2026-01-30",
     location: "Jakarta",
     work_type: "On-site",
     description:
-      "PT Steradian Data Optima is a trusted technology partner that delivers smart, secure, and scalable digital solutions to support long-term organizational growth.",
+      "PT. Steradian Data Optima is a trusted technology partner that delivers smart, secure, and scalable digital solutions to support long-term organizational growth.",
     job_list: [
       "Working as Frontend Developer at PT Bank Rakyat Indonesia to develop the Payroll module for QLola (Top 5 feature), focusing on delivering a high-quality and intuitive user experience.",
       "Collaborated with the product team to design and deploy new payroll capabilities tailored to user needs.",
@@ -46,6 +50,17 @@ export const workExperience: WorkExperience[] = [
       "Built scalable frontend components for new payroll features and maintained complex reporting modules.",
     ],
     link: "https://steradian.co.id",
+    transfer: {
+      logo: "/experience/pkss.png",
+      company: "PT. Prima Karya Sarana Sejahtera",
+      role: "Frontend Developer",
+      start_date: "2026-02-03",
+      end_date: null,
+      location: "Jakarta",
+      work_type: "On-site",
+      description:
+        "PT Prima Karya Sarana Sejahtera (PKSS) is an affiliate of the BRI Worker Welfare Foundation and the BRI Pension Fund.",
+    },
   },
   {
     logo: "/experience/peha.jpg",
