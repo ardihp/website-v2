@@ -10,7 +10,7 @@ export default function ImageKit(props: IKImageProps) {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   return (
-    <div className="w-full h-full relative">
+    <>
       <Image
         urlEndpoint={urlEndpoint}
         loading="lazy"
@@ -19,7 +19,7 @@ export default function ImageKit(props: IKImageProps) {
       />
       <div
         className={cn(
-          `${isLoaded ? "backdrop-blur-0" : "backdrop-blur-lg"} duration-500 w-full h-full bg-white/10`,
+          `${isLoaded ? "backdrop-blur-0" : "backdrop-blur-lg"} duration-500 w-full h-full bg-white/5`,
         )}
       />
       <div
@@ -28,6 +28,6 @@ export default function ImageKit(props: IKImageProps) {
           isLoaded ? "bg-black/30" : "bg-transparent",
         )}
       />
-    </div>
+    </>
   );
 }
