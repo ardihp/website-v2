@@ -6,8 +6,12 @@ import {
 import dayjs from "dayjs";
 import Link from "next/link";
 import React from "react";
-import ImageKit from "@/components/layouts/components/imagekit";
-import { PostItemProps } from "../view";
+import type { PostItemProps } from "../view";
+import dynamic from "next/dynamic";
+
+const ImageKit = dynamic(
+  () => import("@/components/layouts/components/imagekit"),
+);
 
 interface HorizontalPostItemProps {
   post: PostItemProps;
@@ -69,16 +73,17 @@ export default function HorizontalPostItem({
           </div>
         </div>
 
-        <div className="relative h-[180px] w-full sm:max-w-[190px] lg:max-w-[220px] group-hover:sm:max-w-[220px] group-hover:lg:max-w-[250px] sm:skew-x-[-18deg] rounded-[8px] sm:rounded-none overflow-hidden sm:left-6 sm:ring-[8px] sm:ring-secondary/10 duration-300">
-          <div className="relative w-full sm:w-[240px] group-hover:lg:w-[260px] h-full sm:skew-x-[18deg] sm:-left-9 duration-300">
-            <ImageKit
-              src={post.body.thumbnail}
-              alt="Blog Cover Image"
-              className="object-cover object-center sm:object-left w-full scale-100 group-hover:scale-110 duration-500"
-              sizes="600px"
-              fill
-            />
-            <div className="bg-black/30 w-full h-full absolute top-0 shadow-inner shadow-secondary/10 dark:shadow-zinc-700" />
+        <div className="relative h-[180px] w-full sm:max-w-[190px] lg:max-w-[220px] group-hover:sm:max-w-[220px] group-hover:lg:max-w-[250px] rounded-[8px] sm:rounded-none duration-300 overflow-hidden sm:overflow-visible">
+          <div className="absolute top-0 sm:skew-x-[-18deg] w-full h-full sm:left-12">
+            <div className="relative w-full sm:w-[240px] group-hover:lg:w-[260px] h-full sm:-left-9 duration-300 overflow-hidden sm:ring-[8px] sm:ring-secondary/10">
+              <ImageKit
+                src={post.body.thumbnail}
+                alt="Blog Cover Image"
+                className="object-cover object-center sm:object-left w-full scale-100 group-hover:scale-110 duration-500 sm:skew-x-[18deg] sm:-ml-8"
+                sizes="600px"
+                fill
+              />
+            </div>
           </div>
         </div>
       </div>
