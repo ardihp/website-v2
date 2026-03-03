@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -59,7 +60,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LayoutSection>{children}</LayoutSection>
+          <TooltipProvider>
+            <LayoutSection>{children}</LayoutSection>
+          </TooltipProvider>
         </ThemeProvider>
 
         <Script

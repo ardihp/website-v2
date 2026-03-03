@@ -29,7 +29,7 @@ export default function FooterSection() {
           "flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between py-6 md:py-10",
           pathname.includes("/posts/")
             ? "px-4 md:px-6 xl:px-0"
-            : "px-4 md:px-8 xl:px-12"
+            : "px-4 md:px-8 xl:px-12",
         )}
       >
         <section className="flex w-fit sm:w-auto items-center gap-3 p-2 pl-3 rounded-full shadow shadow-secondary/15 dark:shadow-zinc-700/80">
@@ -60,16 +60,6 @@ export default function FooterSection() {
               title="Radix with Shadcn/ui"
               icon={
                 <IconBrandRadixUi
-                  size={18}
-                  className="text-secondary dark:text-white"
-                />
-              }
-            />
-            <FooterTechItem
-              href="https://notion.so/"
-              title="Notion"
-              icon={
-                <IconBrandNotion
                   size={18}
                   className="text-secondary dark:text-white"
                 />
