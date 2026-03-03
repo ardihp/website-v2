@@ -155,7 +155,6 @@ export default function PostBySlugView({
                 sizes="1280px"
                 fill
               />
-              <div className="bg-black/30 w-full h-full absolute top-0" />
             </div>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
               <div className="flex flex-col gap-[2px]">
