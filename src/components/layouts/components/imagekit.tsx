@@ -10,36 +10,16 @@ export default function ImageKit(props: IKImageProps) {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <Image
         urlEndpoint={urlEndpoint}
         loading="lazy"
-        style={
-          isLoaded
-            ? {}
-            : {
-                backgroundImage: `url(${buildSrc({
-                  urlEndpoint: urlEndpoint!,
-                  src: props.src,
-                  transformation: [
-                    // {}, // Any other transformation you want to apply
-                    {
-                      quality: 10,
-                      blur: 90,
-                    },
-                  ],
-                })})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backdropFilter: "blur",
-              }
-        }
-        onLoad={() => setIsLoaded(true)}
+        onLoad={() => setTimeout(() => setIsLoaded(true), 1000)}
         {...props}
       />
       <div
         className={cn(
-          `${isLoaded ? "backdrop-blur-0" : "backdrop-blur-lg"} duration-700 w-full h-full bg-white/10`,
+          `${isLoaded ? "backdrop-blur-0" : "backdrop-blur-lg"} duration-500 w-full h-full bg-white/10`,
         )}
       />
       <div
