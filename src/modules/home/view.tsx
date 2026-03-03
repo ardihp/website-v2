@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
-import IntroductionSection from "./components/introduction";
-import RecentPostSection from "./components/recent-posts";
-import DelayedItem from "@/components/layouts/components/delayed-item";
-import { PostItemProps } from "../posts/view";
+import type { PostItemProps } from "../posts/view";
+import dynamic from "next/dynamic";
+
+const IntroductionSection = dynamic(() => import("./components/introduction"));
+const RecentPostSection = dynamic(() => import("./components/recent-posts"));
+const DelayedItem = dynamic(
+  () => import("@/components/layouts/components/delayed-item"),
+);
 
 interface HomeViewProps {
   posts: PostItemProps[];

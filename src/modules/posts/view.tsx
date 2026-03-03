@@ -7,9 +7,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import HeaderPage from "@/components/layouts/components/header-page";
-import PostItem from "./components/post-item";
-import DelayedItem from "@/components/layouts/components/delayed-item";
 import { cn } from "@/lib/utils";
 import { useKeyPress } from "@/hooks/use-keypress";
 import { useDebounce } from "@/hooks/use-debounce";
@@ -17,6 +14,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
 import { IconBook2, IconLoader } from "@tabler/icons-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import dynamic from "next/dynamic";
+
+const HeaderPage = dynamic(
+  () => import("@/components/layouts/components/header-page"),
+);
+const PostItem = dynamic(() => import("./components/post-item"));
+const DelayedItem = dynamic(
+  () => import("@/components/layouts/components/delayed-item"),
+);
 
 export interface PostItemProps {
   slug: string;
@@ -76,7 +82,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
 
       return true;
     });
-  }, [selectedTags, debouncedKeyword, keyword, firstLoad]);
+  }, [selectedTags, debouncedKeyword, keyword, firstLoad, posts]);
 
   useEffect(() => {
     if (Object.hasOwn(searchQuery, "q")) {
@@ -88,7 +94,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
       const tagsArray = tagsParam.split(",").map((tag) => tag.trim());
       setSelectedTags(tagsArray);
     }
-  }, []);
+  }, [searchQuery]);
 
   useEffect(() => {
     setPages(JSON.parse(localStorage.getItem("pageViews") || "[]"));
@@ -121,18 +127,15 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
     );
   };
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const currentParams = window.location.href.split("?")[1];
+  const createQueryString = useCallback((name: string, value: string) => {
+    const currentParams = window.location.href.split("?")[1];
 
-      const params = new URLSearchParams(currentParams);
-      params.set(name, value);
-      setLoadingSearch(false);
+    const params = new URLSearchParams(currentParams);
+    params.set(name, value);
+    setLoadingSearch(false);
 
-      return params.toString();
-    },
-    [searchQuery],
-  );
+    return params.toString();
+  }, []);
 
   const handleSelectTag = (tag: string) => {
     if (!availableTags.includes(tag) && !selectedTags.includes(tag)) return;
@@ -173,7 +176,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
     if (debouncedKeyword) setFirstLoad(false);
 
     router.replace(`${pathname}?${createQueryString("q", debouncedKeyword)}`);
-  }, [debouncedKeyword, pathname, router]);
+  }, [debouncedKeyword, pathname, router, createQueryString]);
 
   const handleClearSearch = () => {
     setLoadingSearch(true);
@@ -270,7 +273,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
                 No posts found
               </p>
               <p className="text-xs font-semibold font-manrope text-secondary/60">
-                Your search "{debouncedKeyword}" did not match any posts.
+                Your search {`"${debouncedKeyword}"`} did not match any posts.
               </p>
             </div>
 

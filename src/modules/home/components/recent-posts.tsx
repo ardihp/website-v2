@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import HorizontalPostItem from "@/modules/posts/components/horizontal-post-item";
 import Link from "next/link";
-import { PostItemProps } from "@/modules/posts/view";
+import type { PostItemProps } from "@/modules/posts/view";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
+import dynamic from "next/dynamic";
+
+const HorizontalPostItem = dynamic(
+  () => import("@/modules/posts/components/horizontal-post-item"),
+);
 
 interface RecentPostSectionProps {
   posts: PostItemProps[];

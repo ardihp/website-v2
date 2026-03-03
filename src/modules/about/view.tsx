@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
-import ExperienceSection from "./components/experience";
-import BiographySection from "./components/biography";
-import ContactSection from "./components/contact";
-import DelayedItem from "@/components/layouts/components/delayed-item";
+import dynamic from "next/dynamic";
+
+const ExperienceSection = dynamic(() => import("./components/experience"));
+const BiographySection = dynamic(() => import("./components/biography"));
+const ContactSection = dynamic(() => import("./components/contact"));
+const DelayedItem = dynamic(
+  () => import("@/components/layouts/components/delayed-item"),
+);
 
 export default function AboutView() {
   return (

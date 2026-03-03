@@ -9,17 +9,19 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import dayjs from "dayjs";
-import { IconArrowNarrowUp, IconTimeline } from "@tabler/icons-react";
-import { motion } from "framer-motion";
-import DelayedItem from "@/components/layouts/components/delayed-item";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getAnchor, mdxComponents } from "@/data/mdx-components";
 import { useScrollspy } from "@/hooks/use-scrollspy";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
-import ImageKit from "@/components/layouts/components/imagekit";
 import readTime from "@/lib/read-time";
 import { getWebsiteMetrics } from "@/hooks/use-umami";
+import dynamic from "next/dynamic";
+
+const ArrowToTop = dynamic(() => import("../components/arrow-to-top"));
+const ImageKit = dynamic(
+  () => import("@/components/layouts/components/imagekit"),
+);
 
 export interface DetailPostItemProps {
   body: {
@@ -237,39 +239,7 @@ export default function PostBySlugView({
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0, y: 60 }}
-        animate={{
-          opacity: showScroll ? 1 : 0,
-          scale: showScroll ? 1 : 0,
-          y: showScroll ? 0 : 60,
-        }}
-        transition={{ type: "spring" }}
-        className="scroll-top hidden md:flex"
-        onClick={() => scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <IconArrowNarrowUp
-          size={20}
-          className="dark:text-white text-secondary"
-        />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0, y: 30 }}
-        animate={{
-          opacity: showScroll ? 1 : 0,
-          scale: showScroll ? 1 : 0,
-          y: showScroll ? 0 : 30,
-        }}
-        transition={{ type: "spring" }}
-        className="scroll-top flex md:hidden"
-        onClick={() => scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <IconArrowNarrowUp
-          size={20}
-          className="dark:text-white text-secondary"
-        />
-      </motion.div>
+      <ArrowToTop showScroll={showScroll} />
     </>
   );
 }
