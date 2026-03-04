@@ -15,6 +15,13 @@ export const listWorks: Work[] = [
     live: "https://inyoumarket.net",
   },
   {
+    company: "Fumira",
+    desc: "",
+    image: "/works/fumira.png",
+    tech: ["HTML", "SCSS", "JavaScript"],
+    live: "",
+  },
+  {
     company: "Es Teh Indonesia",
     desc: "Internal CRM Dashboard",
     image: "/works/esteh.jpg",
@@ -37,7 +44,7 @@ export const listWorks: Work[] = [
   },
   {
     company: "Blue Karma Secrets",
-    desc: "𝑨 𝒎𝒂𝒈𝒊𝒄𝒂𝒍 𝒄𝒐𝒎𝒃𝒊𝒏𝒂𝒕𝒊𝒐𝒏 𝒐𝒇 𝒍𝒖𝒔𝒉 𝒔𝒆𝒕𝒕𝒊𝒏𝒈𝒔, 𝒘𝒆𝒍𝒍𝒏𝒆𝒔𝒔 𝒆𝒙𝒑𝒆𝒓𝒊𝒆𝒏𝒄𝒆𝒔, 𝒂𝒏𝒅 𝒆𝒙𝒒𝒖𝒊𝒔𝒊𝒕𝒆𝒍𝒚 𝒂𝒑𝒑𝒐𝒊𝒏𝒕𝒆𝒅 𝒅𝒐𝒎𝒊𝒄𝒊𝒍𝒆𝒔",
+    desc: "A magical combination of lush settings, wellness experiences, and exquisitely appointed domicilies",
     image: "/works/bks.png",
     tech: ["Next.js", "TypeScript", "Mantine UI", "Socket.io"],
     live: "https://bluekarmasecrets.com",
@@ -48,13 +55,6 @@ export const listWorks: Work[] = [
     image: "/works/lucydream.jpeg",
     tech: ["Next.js", "TypeScript", "Mantine UI", "Socket.io"],
     live: "https://lucydreamart.com",
-  },
-  {
-    company: "Dashboard Lucy Dream Art",
-    desc: "Dashboard Lucy Dream Art",
-    image: "/works/lucydream.jpeg",
-    tech: ["Next.js", "MUI Material", "Socket.io"],
-    live: "",
   },
   {
     company: "Poke Render",
