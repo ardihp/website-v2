@@ -32,7 +32,7 @@ function ContactItem({ icon, text, title, link }: ContactItemProps) {
         <p className="font-medium text-secondary/70 dark:text-white">{text}</p>
 
         <IconExternalLink
-          className="text-secondary/70 dark:text-white ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-2 duration-300"
+          className="text-secondary/70 dark:text-white mt-[2px] ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-2 duration-300"
           size={16}
         />
       </div>

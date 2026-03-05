@@ -27,8 +27,8 @@ export default function FooterTechItem({
         </Link>
       </TooltipTrigger>
       <TooltipContent
-        sideOffset={10}
-        className="dark:!bg-zinc-800 bg-transparent border border-secondary/20 dark:border-zinc-800"
+        sideOffset={5}
+        className="dark:!bg-zinc-800 bg-primary/20 backdrop-blur-md border border-secondary/20 dark:border-zinc-800"
       >
         <p className="font-fredoka text-[12px] font-medium dark:!text-white text-secondary">
           {title}
