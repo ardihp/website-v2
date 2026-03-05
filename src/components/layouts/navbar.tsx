@@ -34,19 +34,16 @@ export default function NavbarSection() {
 
   return (
     <>
-      <header className="flex flex-col pt-4 md:pt-6 lg:pt-8 pb-4 lg:pb-8 items-center bg-transparent">
+      <header className="flex pt-4 md:pt-6 lg:pt-8 pb-4 lg:pb-8 justify-center bg-transparent">
         <section
           className={cn(
-            "flex justify-between items-center w-full rounded-full max-w-screen-lg duration-500",
+            "flex justify-between items-center w-full rounded-full max-w-screen-lg duration-500 px-4",
             pathname.includes("/posts/")
-              ? "px-4 md:px-6 xl:px-0"
-              : "px-4 md:px-8 xl:px-12",
+              ? "md:px-6 xl:px-0"
+              : "md:px-8 xl:px-12",
           )}
         >
-          <Link
-            href="/"
-            className="relative w-[50px] h-[50px] rounded-full overflow-hidden bg-[--background]"
-          >
+          <Link href="/" className="relative size-[50px] overflow-hidden">
             <Image
               src="/logo.png"
               fill
