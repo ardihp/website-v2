@@ -56,8 +56,8 @@ export default function RootLayout({
       <body className={`${manrope.variable} ${fredoka.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           <TooltipProvider>
