@@ -185,7 +185,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
 
   return (
     <DelayedItem start="bottom" end="bottom">
-      <div className="flex flex-col max-w-screen-lg mx-auto w-full gap-8 lg:gap-12 px-4 md:px-8 lg:px-[48px]">
+      <div className="flex flex-col max-w-screen-lg mx-auto w-full gap-8 lg:gap-12 px-4 md:px-8 xl:px-12">
         <HeaderPage title="My Posts">
           <div className="flex items-center mb-5 relative">
             <input
