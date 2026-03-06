@@ -87,11 +87,26 @@ export async function GET() {
 
     const response = await getCurrentlyPlaying(access_token!);
 
-    if (response.status === 204 || response.status > 400) {
+    if (response.status > 400) {
       return NextResponse.json(
         { error: response.statusText },
-        { status: response.status },
+        { status: response.status === 204 ? 400 : response.status },
       );
+    }
+
+    if (response.status === 204) {
+      const response = await getRecentlyPlayed(access_token!);
+      const recentlyPlayed = await response.json();
+      const song = recentlyPlayed.items[0].track;
+
+      return NextResponse.json({
+        isPlaying: false,
+        title: song.name,
+        artist: song.artists.map((artist: any) => artist.name).join(", "),
+        album: song.album.name,
+        albumImageUrl: song.album.images[0]?.url,
+        songUrl: song.external_urls.spotify,
+      });
     }
 
     const song = await response.json();
@@ -99,17 +114,16 @@ export async function GET() {
     if (!song.item) {
       const response = await getRecentlyPlayed(access_token!);
       const recentlyPlayed = await response.json();
+      const song = recentlyPlayed.items[0].track;
 
-      console.log(recentlyPlayed);
-
-      // return NextResponse.json({
-      //   is_playing: false,
-      //   title: song.item.name,
-      //   artist: song.item.artists.map((artist: any) => artist.name).join(", "),
-      //   album: song.item.album.name,
-      //   albumImageUrl: song.item.album.images[0]?.url,
-      //   songUrl: song.item.external_urls.spotify,
-      // });
+      return NextResponse.json({
+        isPlaying: false,
+        title: song.name,
+        artist: song.artists.map((artist: any) => artist.name).join(", "),
+        album: song.album.name,
+        albumImageUrl: song.album.images[0]?.url,
+        songUrl: song.external_urls.spotify,
+      });
     }
 
     return NextResponse.json({
