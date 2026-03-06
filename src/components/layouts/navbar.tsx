@@ -12,13 +12,11 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
 
-const menuItems = [
+export const menuItems = [
   { label: "Posts", href: "/posts" },
   { label: "Works", href: "/works" },
   { label: "About", href: "/about" },
