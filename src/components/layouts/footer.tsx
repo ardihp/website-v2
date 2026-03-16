@@ -29,7 +29,7 @@ import { Skeleton } from "../ui/skeleton";
 function ContactItem({ icon, link }: { icon: ReactNode; link: string }) {
   return (
     <Link href={link} className="group w-fit" target="_blank" passHref>
-      <div className="flex items-center gap-2 text-xs md:text-base opacity-50 hover:opacity-100">
+      <div className="flex items-center gap-2 text-xs md:text-base opacity-50 hover:opacity-100 duration-200">
         {icon}
       </div>
     </Link>
@@ -69,9 +69,7 @@ export default function FooterSection() {
       <section
         className={cn(
           "w-full max-w-screen-lg mx-auto duration-500",
-          pathname.includes("/posts/")
-            ? "px-4 md:px-6"
-            : "px-4 md:px-8",
+          pathname.includes("/posts/") ? "px-0" : "px-4 md:px-12",
         )}
       >
         <div className="w-full grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(8,1fr)] border-2 border-secondary/20 border-dashed rounded-[32px] shadow-inner overflow-hidden">
