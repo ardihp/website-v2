@@ -7,10 +7,9 @@ import dayjs from "dayjs";
 
 interface PostItemsProps {
   post: PostItemProps;
-  viewCount: number | boolean;
 }
 
-export default function PostItem({ post, viewCount }: PostItemsProps) {
+export default function PostItem({ post }: PostItemsProps) {
   return (
     <Link href={`/posts/${post.slug}`} scroll passHref>
       <div className="flex flex-col items-center gap-2 h-full w-full p-4 rounded-[32px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] relative scale-100 top-0 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99]">
@@ -50,10 +49,6 @@ export default function PostItem({ post, viewCount }: PostItemsProps) {
           <p className="text-xs text-primary">
             {dayjs(post.body.publishedOn).format("MMM D, YYYY")}
           </p>
-          <IconPointFilled size={12} className="text-primary" />
-          <div className="flex gap-1 items-center">
-            <p className="text-xs text-primary/90">{viewCount || "--"} views</p>
-          </div>
         </div>
       </div>
     </Link>

@@ -57,7 +57,6 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
   const [inputFocused, setInputFocused] = useState<boolean>(false);
-  const [pages, setPages] = useState<{ value: string; count: number }[]>([]);
   const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -97,18 +96,6 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
   }, [searchQuery]);
 
   useEffect(() => {
-    setPages(JSON.parse(localStorage.getItem("pageViews") || "[]"));
-
-    const fetchPageView = async () => {
-      const { pages } = await getWebsiteMetrics();
-      setPages(pages);
-      localStorage.setItem("pageViews", JSON.stringify(pages));
-    };
-
-    fetchPageView();
-  }, []);
-
-  useEffect(() => {
     setAvailableTags(
       Array.from(
         new Set(
@@ -120,12 +107,6 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
       ),
     );
   }, [filteredPosts]);
-
-  const pageViews = (post: PostItemProps) => {
-    return (
-      pages?.find((page: any) => page?.value?.includes(post.slug))?.count || 0
-    );
-  };
 
   const createQueryString = useCallback((name: string, value: string) => {
     const currentParams = window.location.href.split("?")[1];
@@ -299,11 +280,7 @@ export default function PostsView({ posts, searchQuery }: PostsViewProps) {
                   end="top"
                   delay={Math.min(index * 0.08, 0.2)}
                 >
-                  <PostItem
-                    key={index}
-                    post={post}
-                    viewCount={pages.length >= 1 ? pageViews(post) : false}
-                  />
+                  <PostItem key={index} post={post} />
                 </DelayedItem>
               ))}
           </div>

@@ -15,13 +15,9 @@ const ImageKit = dynamic(
 
 interface HorizontalPostItemProps {
   post: PostItemProps;
-  viewCount: number | boolean;
 }
 
-export default function HorizontalPostItem({
-  post,
-  viewCount,
-}: HorizontalPostItemProps) {
+export default function HorizontalPostItem({ post }: HorizontalPostItemProps) {
   return (
     <Link href={`/posts/${post.slug}`} passHref>
       <div className="flex flex-col-reverse sm:flex-row items-start gap-2 h-full p-4 sm:p-0 w-full group rounded-[16px] sm:rounded-[24px] shadow-inner shadow-secondary/10 dark:shadow-zinc-700 dark:bg-zinc-900/40 bg-secondary/[0.01] scale-100 relative duration-200 active:top-0 active:scale-[0.99] overflow-hidden">
@@ -29,13 +25,6 @@ export default function HorizontalPostItem({
           <div className="flex gap-1 items-center">
             <p className="text-xs font-medium text-secondary/40 dark:text-white/70">
               {dayjs(post.body.publishedOn).format("MMM DD, YYYY")}
-            </p>
-            <IconPointFilled
-              size={12}
-              className="text-secondary/40 dark:text-white"
-            />
-            <p className="text-xs font-medium text-secondary/40 dark:text-white/70">
-              {viewCount || "--"} views
             </p>
           </div>
 
