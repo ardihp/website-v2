@@ -47,7 +47,7 @@ export const mdxComponents = {
     );
   },
   img: (props: any) => (
-    <img {...props} className="object-cover object-center" />
+    <img {...props} className="object-cover object-center my-8" />
   ),
   blockquote: (props: any) => (
     <blockquote
