@@ -18,7 +18,13 @@ export default function WorksView() {
         <div className="grid gap-8 h-full">
           <div className="hidden md:flex flex-col gap-8 w-full">
             {listWorks?.map((work, index: number) => (
-              <WorkItem key={index} work={work} start="bottom" end="top" />
+              <WorkItem
+                key={index}
+                work={work}
+                start="bottom"
+                end="top"
+                delay={Math.min(index * 0.08, 0.2)}
+              />
             ))}
           </div>
           <div className="flex md:hidden flex-col gap-6 md:gap-8 w-full">
