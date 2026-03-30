@@ -1,68 +1,92 @@
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import { Work } from "@/data/works";
 import Image from "next/image";
-import { IconCirclesRelation } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
+import { IconExternalLink } from "@tabler/icons-react";
+import Link from "next/link";
 
 interface WorkItemProps {
   work: Work;
   delay?: number;
   start: string;
   end: string;
+  className?: string;
 }
 
-export default function WorkItem({ work }: WorkItemProps) {
+export default function WorkItem({ work, className }: WorkItemProps) {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
   return (
-    <Link
-      href={work.live || "#"}
-      className="no-underline inline-block w-full"
-      target={work.live ? "_blank" : "_self"}
-      passHref
+    <div
+      className={cn(
+        "flex flex-col md:flex-row gap-4 md:gap-10 justify-between shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80 border-style group border-solid dark:border-opacity-50 hover:dark:border-opacity-100 p-4 rounded-[16px] h-fit dark:bg-zinc-900/40 bg-secondary/[0.01] overflow-hidden",
+        className,
+      )}
     >
-      <div
-        className={`flex flex-col shadow-inner shadow-secondary/10 dark:shadow-zinc-700/80 border-style group border-solid dark:border-opacity-50 hover:dark:border-opacity-100 p-4 rounded-[16px] h-fit dark:bg-zinc-900/40 bg-secondary/[0.01] relative top-0 scale-100 hover:top-[-6px] duration-200 active:top-0 active:scale-[0.99] ${
-          work.live ? "cursor-pointer" : "cursor-default"
-        }`}
-      >
-        <div className="p-[6px] rounded-full w-fit shadow-inner shadow-secondary/10 dark:shadow-zinc-700">
-          <div className="relative z-[2] h-[35px] w-[35px] rounded-full overflow-hidden">
+      <div className="flex flex-col gap-4 justify-between">
+        <div className="flex flex-col gap-2 md:min-w-[400px] md:max-w-[400px]">
+          <div className="border border-dashed border-secondary/20 p-1 w-fit rounded-full">
             <Image
-              src={work.image}
-              alt="Logo Workplace"
-              fill
-              sizes="100px"
-              className="object-cover object-center w-full h-auto"
+              src={work.logo}
+              alt={work.company}
+              width={35}
+              height={35}
+              className="object-cover object-center rounded-full"
             />
           </div>
-        </div>
 
-        <div className="flex flex-col pt-3 md:pt-4 gap-1 md:gap-2">
-          <p className="font-fredoka font-medium text-md md:text-xl text-secondary/60 dark:text-white">
+          <p className="font-semibold text-lg text-secondary/70">
             {work.company}
           </p>
-          <p className="font-manrope text-xs md:text-sm font-bold line-clamp-2 text-pretty text-secondary/40 dark:text-white/70">
+
+          <p className="font-manrope font-bold text-xs text-secondary/40 leading-[1.2rem] text-pretty">
             {work.desc}
           </p>
         </div>
 
-        <div className="flex flex-col justify-center gap-[6px] mt-4 md:mt-6">
-          <p className="font-fredoka text-xs md:text-sm font-medium text-secondary/40 dark:text-white/60">
-            {work.tech?.join(", ")}
-          </p>
-
-          {work.live && (
-            <div className="flex items-center gap-2 opacity-80">
-              <IconCirclesRelation
-                stroke={3}
-                className="text-tertiary/70 dark:text-primary h-[16px] md:h-[20px] w-[16px] md:w-[20px]"
-              />
-              <p className="font-fredoka text-sm font-medium text-tertiary/70 dark:text-primary group-hover:underline">
-                {work.live}
+        <div className="flex flex-wrap gap-2">
+          {work.tech.map((item, key) => (
+            <div
+              key={key}
+              className="flex items-center justify-center px-2 py-1 bg-primary/5 backdrop-blur-sm border border-dashed border-secondary/20 rounded-full"
+            >
+              <p className="font-manrope font-bold text-xs text-secondary/70">
+                {item}
               </p>
             </div>
-          )}
+          ))}
         </div>
       </div>
-    </Link>
+
+      <div className="relative -mt-10 aspect-video top-10 w-full rounded-t-lg overflow-hidden border border-dashed border-secondary/20">
+        <Image
+          src={work.thumbnail}
+          sizes="438px"
+          fill
+          alt={work.company}
+          className="object-cover object-top rounded-t-lg p-1"
+          quality={80}
+          onLoad={() => setTimeout(() => setIsLoaded(true), 1000)}
+        />
+
+        <div className="absolute top-0 p-1 w-full h-full">
+          <div
+            className={cn(
+              `${isLoaded ? "backdrop-blur-0" : "backdrop-blur-xl"} rounded-t duration-500 w-full h-full bg-white/5`,
+            )}
+          />
+        </div>
+
+        {work.live && (
+          <Link
+            href={work.live}
+            target="_blank"
+            className="absolute bottom-10 right-4 group rounded-full p-1.5 flex items-center gap-1 border border-primary/10 bg-secondary/30 invert-[10%] backdrop-blur-sm cursor-pointer"
+          >
+            <IconExternalLink size={16} stroke={2.5} className="text-white" />
+          </Link>
+        )}
+      </div>
+    </div>
   );
 }
