@@ -16,6 +16,15 @@ export interface Work {
 
 export const listWorks: Work[] = [
   {
+    company: "Bagi Bayar",
+    desc: "Record every destination and split the cost with friends without the drama. A premium solution for the modern traveler.",
+    logo: "/works/byr.png",
+    thumbnail: "/works/bagi-bayar.png",
+    tech: ["Next.js", "TypeScript", "TailwindCSS"],
+    live: "https://bagi-bayar.vercel.app",
+    type: ["landing-page", "custom"],
+  },
+  {
     company: "In You Market",
     desc: "Landing page slicing was completed, along with integration of key features including authentication, user profile management, and subscription functionality.",
     logo: "/works/inyou.png",
@@ -30,7 +39,7 @@ export const listWorks: Work[] = [
     logo: "/works/fmr.png",
     thumbnail: "/works/fumira.jpeg",
     tech: ["HTML", "SCSS", "JavaScript"],
-    live: "",
+    live: "https://fumira.co.id",
     type: ["landing-page"],
   },
   {
