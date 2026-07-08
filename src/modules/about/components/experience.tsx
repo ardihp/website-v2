@@ -99,12 +99,13 @@ export default function ExperienceSection() {
                   key={work.company}
                   className="flex flex-col gap-8 relative"
                 >
-                  {work.transfer && (
-                    <>
-                      <ExperienceItem work={work.transfer} />
-                      <div className="hidden md:inline absolute w-0.5 h-14 top-20 left-10 bg-secondary/20" />
-                    </>
-                  )}
+                  {work.transfer &&
+                    work.transfer?.map((item) => (
+                      <div key={item.company} className="relative">
+                        <ExperienceItem work={item} />
+                        <div className="hidden md:inline absolute w-0.5 h-14 top-20 left-10 bg-secondary/20" />
+                      </div>
+                    ))}
                   <ExperienceItem work={work} />
                 </div>
               ),

@@ -7,12 +7,12 @@ interface WorkInformation {
   location: String;
   work_type: String;
   description: string;
+  link?: string;
 }
 
 export interface WorkExperience extends WorkInformation {
   job_list?: string[];
-  link?: string;
-  transfer?: WorkInformation;
+  transfer?: WorkInformation[];
 }
 
 export const workExperience: WorkExperience[] = [
@@ -50,17 +50,32 @@ export const workExperience: WorkExperience[] = [
       "Built scalable frontend components for new payroll features and maintained complex reporting modules.",
     ],
     link: "https://steradian.co.id",
-    transfer: {
-      logo: "/experience/pkss.png",
-      company: "PT. Prima Karya Sarana Sejahtera",
-      role: "Frontend Developer",
-      start_date: "2026-02-03",
-      end_date: null,
-      location: "Jakarta",
-      work_type: "On-site",
-      description:
-        "PT Prima Karya Sarana Sejahtera (PKSS) is an affiliate of the BRI Worker Welfare Foundation and the BRI Pension Fund.",
-    },
+    transfer: [
+      {
+        logo: "/experience/bri.jpg",
+        company: "PT. Bank Rakyat Indonesia",
+        role: "Frontend Developer",
+        start_date: "2025-07-27",
+        end_date: null,
+        location: "Jakarta",
+        work_type: "On-site",
+        description:
+          "Bank Rakyat Indonesia (BRI) is one of the largest state-owned banks in Indonesia. The Bank was established by Raden Bei Aria Wirjaatmadja on December 16, 1895 in Purwokerto, Central Java.",
+        link: "https://www.bri.co.id",
+      },
+      {
+        logo: "/experience/pkss.png",
+        company: "PT. Prima Karya Sarana Sejahtera",
+        role: "Frontend Developer",
+        start_date: "2026-02-03",
+        end_date: null,
+        location: "Jakarta",
+        work_type: "On-site",
+        description:
+          "PT Prima Karya Sarana Sejahtera (PKSS) is an affiliate of the BRI Worker Welfare Foundation and the BRI Pension Fund.",
+        link: "https://pkss.co.id",
+      },
+    ],
   },
   {
     logo: "/experience/peha.jpg",
