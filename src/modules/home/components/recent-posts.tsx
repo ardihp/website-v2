@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import type { PostItemProps } from "@/modules/posts/view";
-import { getWebsiteMetrics } from "@/hooks/use-umami";
 import dynamic from "next/dynamic";
 
 const HorizontalPostItem = dynamic(

@@ -15,7 +15,6 @@ import { useScrollspy } from "@/hooks/use-scrollspy";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import readTime from "@/lib/read-time";
-import { getWebsiteMetrics } from "@/hooks/use-umami";
 import dynamic from "next/dynamic";
 
 const ArrowToTop = dynamic(() => import("../components/arrow-to-top"));
@@ -49,12 +48,9 @@ export default function PostBySlugView({
   const [showScroll, setShowScroll] = useState(false);
   const [spyProps, setSpyProps] = useState({ elements: [], options: {} });
   const [currentActive] = useScrollspy(spyProps.elements, spyProps.options);
-  const [pages, setPages] = useState<{ value: string; count: number }[]>([]);
   const router = useRouter();
   const pathname = usePathname();
 
-  const pageViews =
-    pages?.find((page: any) => page?.value?.includes(slug))?.count || 0;
   const tableContents =
     post.content.split("\n").filter((line: string) => line.startsWith("#")) ||
     [];
@@ -82,18 +78,6 @@ export default function PostBySlugView({
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    setPages(JSON.parse(localStorage.getItem("pageViews") || "[]"));
-
-    const fetchPageView = async () => {
-      const { pages } = await getWebsiteMetrics();
-      setPages(pages);
-      localStorage.setItem("pageViews", JSON.stringify(pages));
-    };
-
-    fetchPageView();
   }, []);
 
   const handleTOCClick = (content: string) => {
@@ -177,17 +161,7 @@ export default function PostBySlugView({
                 </p>
               </div>
 
-              <div className="flex flex-col md:items-end gap-[2px] md:ml-auto">
-                <p className="text-secondary/50 font-medium text-xs">
-                  Page View
-                </p>
-
-                <p className="font-manrope text-sm font-black dark:text-white/70 text-secondary/70">
-                  {pageViews} view{pageViews > 1 && "s"}
-                </p>
-              </div>
-
-              <div className="flex flex-col md:items-end gap-[2px]">
+              <div className="flex flex-col md:items-end gap-[2px] ml-auto">
                 <p className="text-secondary/50 font-medium text-xs">
                   Reading Time
                 </p>

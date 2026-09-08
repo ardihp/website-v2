@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 import { useKeyPress } from "@/hooks/use-keypress";
 import { useDebounce } from "@/hooks/use-debounce";
 import { usePathname, useRouter } from "next/navigation";
-import { getWebsiteMetrics } from "@/hooks/use-umami";
 import { IconBook2, IconLoader } from "@tabler/icons-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
