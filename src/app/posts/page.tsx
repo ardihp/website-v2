@@ -4,8 +4,18 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Posts • Ardi Hp",
-  description: "Page for list of post like on Medium.",
+  title: "Posts",
+  description:
+    "Articles and reflections by me on web development, engineering, and lessons learned along the way.",
+  alternates: {
+    canonical: "/posts",
+  },
+  openGraph: {
+    title: "Posts • Ardi Hp",
+    description:
+      "Articles and reflections by me on web development, engineering, and lessons learned along the way.",
+    url: "/posts",
+  },
 };
 
 export default async function PostsPage({

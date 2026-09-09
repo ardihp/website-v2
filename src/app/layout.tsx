@@ -21,9 +21,72 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ardihp.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Ardi Hp",
-  description: "Ardi's Hp Portofolio Website",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Ardi • Portfolio",
+    template: "%s • Ardi Hp",
+  },
+  description:
+    "Personal portfolio of Ardi — a software engineer showcasing projects, works, and writing on web development.",
+  keywords: [
+    "Ardi Hp",
+    "portfolio",
+    "software engineer",
+    "web developer",
+    "frontend developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+  ],
+  authors: [{ name: "Ardi Hp", url: siteUrl }],
+  creator: "Ardi Hp",
+  publisher: "Ardi Hp",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Ardi Hp",
+    title: "Ardi Hp • Portfolio",
+    description:
+      "Personal portfolio of Ardi — a software engineer showcasing projects, works, and writing on web development.",
+    images: [
+      {
+        url: "/meta-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ardi Hp Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ardi Hp • Portfolio",
+    description:
+      "Personal portfolio of Ardi — a software engineer showcasing projects, works, and writing on web development.",
+    images: ["/meta-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [{ url: "/favicon/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/favicon/manifest.json",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -33,26 +96,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/favicon/manifest.json" />
-      </head>
       <body className={`${manrope.variable} ${fredoka.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
