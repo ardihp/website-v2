@@ -50,26 +50,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteUrl,
+    url: new URL(siteUrl),
     siteName: "Ardi Hp",
     title: "Ardi Hp • Portfolio",
     description:
       "Personal portfolio of Ardi — a software engineer showcasing projects, works, and writing on web development.",
-    images: [
-      {
-        url: "/meta-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Ardi Hp Portfolio",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ardi Hp • Portfolio",
     description:
       "Personal portfolio of Ardi — a software engineer showcasing projects, works, and writing on web development.",
-    images: ["/meta-image.png"],
   },
   icons: {
     icon: [
