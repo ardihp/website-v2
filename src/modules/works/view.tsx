@@ -2,7 +2,7 @@
 
 import React from "react";
 import WorkItem from "./components/work-item";
-import { listWorks } from "@/data/works";
+import { listWorks } from "@/data/workss";
 import HeaderPage from "@/components/layouts/components/header-page";
 import DelayedItem from "@/components/layouts/components/delayed-item";
 
